@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { ProductListComponent } from "./product-list/product-list.component";
-import { RegisterProductComponent } from "./register-product/register-product.component";
+import { RegisterProductComponent } from "./product/register/register-product.component";
+import { ProductListComponent } from "./product/list/product-list.component";
 
 @NgModule({
   declarations: [
