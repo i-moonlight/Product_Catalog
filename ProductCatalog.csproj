@@ -11,7 +11,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FakerOfData.Core" Version="0.3.0-rc2" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.10"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,6 +25,12 @@
         <Content Remove="$(SpaRoot)**"/>
         <None Remove="$(SpaRoot)**"/>
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**"/>
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <Folder Include="ClientApp\src\app\product\" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
