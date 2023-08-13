@@ -12,7 +12,6 @@ export class ProductListComponent {
     http.get<Product[]>(baseUrl + 'product')
       .subscribe((data) => {
         this.products = data;
-        console.log(this.products);
       });
   }
 }
