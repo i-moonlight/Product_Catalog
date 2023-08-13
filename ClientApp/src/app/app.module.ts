@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -19,14 +19,15 @@ import { ProductListComponent } from "./product/list/product-list.component";
     ProductListComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'register-product', component: RegisterProductComponent },
-      { path: 'product-list', component: ProductListComponent },
-    ])
+      {path: '', component: HomeComponent, pathMatch: 'full'},
+      {path: 'register-product', component: RegisterProductComponent},
+      {path: 'product-list', component: ProductListComponent},
+    ]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
