@@ -9,18 +9,18 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterProductComponent } from "./product/register/register-product.component";
 import { ProductListComponent } from "./product/list/product-list.component";
+import {ProductModule} from "./product/product.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    RegisterProductComponent,
-    ProductListComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
+    ProductModule,
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
