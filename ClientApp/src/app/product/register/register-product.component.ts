@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {catchError, tap} from "rxjs";
 @Component({
   selector: 'app-register-product-component',
   templateUrl: './register-product.component.html'
@@ -31,35 +32,26 @@ export class RegisterProductComponent {
       description: ['', [Validators.required, Validators.minLength(25)]],
       type: ['---Selecione o tipo de produto---', [Validators.required]],
     });
-
-    this.myForm.valueChanges.subscribe(console.log);
   }
 
-  public productTypes: Array<any> = [
+  public productTypes: Array<{ name: string; value: number }> = [
     { name: "Organic", value: 0},
     { name: "Non-Organic", value: 1}
   ];
 
+  public submit() {
 
-
-  //how to replace the subscribe method with a promise
-
-
-
-  //how rewrite the submit method using a promise
-   public submit() {
-
-      this._http.post(this._baseUrl + 'product',
-        this.myForm.value, {observe: 'response'})
-      .subscribe(response => {
-        if(response.status == 201) {
-          this._router.navigate(['/product-list']);
-        }
-      }, (response: HttpErrorResponse) => {
-
-          alert(response.error);
-
-      });
+    this._http.post(this._baseUrl + 'product',
+      this.myForm.value, {observe: 'response'})
+      .pipe(
+        tap(response =>
+          this._router.navigate(['/product-list'])),
+        catchError((error): any  => {
+          alert(error.error);
+        })
+      )
+      .subscribe();
 
   }
+
 }
