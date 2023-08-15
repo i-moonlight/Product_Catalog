@@ -14,7 +14,7 @@
     </div>
     <div class="mb-3">
       <label for="price" class="form-label">Preço</label>
-      <input formControlName="price" type="number" class="form-control" id="price">
+      <input prefix="R$ " mask="00.00 || 000.00 || 0000.00" formControlName="price" type="text" class="form-control" id="price">
       <div id="PriceHelp" class="form-text">Digite o preço do produto</div>
       <div *ngIf="myForm.get('price')?.errors?.required && myForm.get('price')?.touched" class="alert alert-danger">
         Preço é obrigatório

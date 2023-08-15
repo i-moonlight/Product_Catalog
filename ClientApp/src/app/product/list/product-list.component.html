@@ -22,14 +22,14 @@
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.quantity }}</td>
+        <td>{{ product.description }}</td>
         <td>{{ product.type }}</td>
       </tr>
     </tbody>
 
-    <tfoot class="row m-0">
+    <tfoot class="row m-0" >
       <nav class="col-12 p-0" aria-label="Page navigation example">
         <ul class="pagination justify-content-center my-0">
           <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">

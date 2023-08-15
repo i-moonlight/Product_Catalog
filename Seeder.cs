@@ -19,7 +19,7 @@ public static class Seeder
                 CreatedAt = rand.Date(DateTimeOffset.Now),
                 Price =  new decimal(rand.Next(10, 250)),
                 Quantity = rand.Next(1, 100),
-                Type = Enumerable.Range(1,2)
+                Type = Enumerable.Range(0,2)
                     .Select(x => (ProductTypeEnum)x)
                     .OrderBy(x => Guid.NewGuid())
                     .FirstOrDefault()
