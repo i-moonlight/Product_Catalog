@@ -23,13 +23,19 @@ public sealed class ProductController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<IActionResult> Get(int pageIndex = 1)
+    public async Task<IActionResult> Get(int pageIndex)
     {
+        var total = await _context.Products.CountAsync();
+        var totalPages = (int)Math.Ceiling(total / (double)PageSize);
+        HttpContext.Response.Headers.Add("totalPages",totalPages.ToString());
+        
         var products = await _context.Products
             .OrderBy(p => p.Name)
             .Skip((pageIndex - 1) * PageSize)
             .Take(PageSize)
             .ToListAsync();
+        
+        _logger.LogInformation("Produtos retornados com sucesso.");
         return Ok(products);
     }
     
@@ -55,7 +61,7 @@ public sealed class ProductController : ControllerBase
         
         _context.Products.Add(product);
         _context.SaveChanges();
-        _logger.LogInformation("Product created successfully");
+        _logger.LogInformation("Produto criado com sucesso.");
         return CreatedAtAction(nameof(Get), new { id = product.Id }, productModel);
     }
 }
