@@ -25,6 +25,7 @@
     "@angular/router": "^15.2.8",
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.4",
+    "ngx-mask": "^14.2.4",
     "oidc-client": "^1.11.5",
     "popper.js": "^1.16.0",
     "run-script-os": "^1.1.6",
@@ -50,6 +51,5 @@
   "overrides": {
     "autoprefixer": "10.4.5",
     "webpack": "5.81.0"
-  },
-  "optionalDependencies": {}
+  }
 }
