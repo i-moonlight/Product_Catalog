@@ -10,12 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { RegisterProductComponent } from "./product/register/register-product.component";
 import { ProductListComponent } from "./product/list/product-list.component";
 import {ProductModule} from "./product/product.module";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

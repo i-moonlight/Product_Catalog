@@ -1,6 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+@font-face {
+  font-family: Poppins !important;
+  src: local("../assets/fonts/Poppins-Regular.ttf")
+}
+
+:root {
+}
+
+html, body {
+  height: 100svh !important;
+  font-family: Poppins, 'sans-serif';
+}
+
 a {
   color: #0366d6;
 }
@@ -18,3 +31,5 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+
