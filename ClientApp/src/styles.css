@@ -1,17 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Provide sufficient contrast against white background */
-@font-face {
-  font-family: Poppins !important;
-  src: local("../assets/fonts/Poppins-Regular.ttf")
-}
 
 :root {
+  --primary-background: #EBF1FF;
+  --primary-font-family: 'Poppins', sans-serif;
+}
+
+@font-face {
+  font-family: var(--primary-font-family, 'Poppins', sans-serif) !important;;
+  src: local("../assets/fonts/Poppins-Regular.ttf")
 }
 
 html, body {
   height: 100svh !important;
-  font-family: Poppins, 'sans-serif';
+  font-family: var(--primary-font-family, 'Poppins', sans-serif) !important;
+  background-color: var(--primary-background, #EBF1FF) !important;
 }
 
 a {
