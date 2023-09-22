@@ -28,12 +28,14 @@
             ],
             "assets": [
               "src/assets"
-            ],
+              ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "../ClientApp/src/assets/lib/bootstrap/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../ClientApp/src/assets/lib/bootstrap/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

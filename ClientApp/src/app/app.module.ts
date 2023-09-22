@@ -10,7 +10,7 @@ import { RegisterProductComponent } from "./product/register/register-product.co
 import { ProductListComponent } from "./product/list/product-list.component";
 import { ProductModule } from "./product/product.module";
 import { SideNavComponent } from "./side-nav/side-nav.component";
-import {HeaderComponent} from "./header/header.component";
+import { HeaderComponent } from "./header/header.component";
 
 
 @NgModule({
