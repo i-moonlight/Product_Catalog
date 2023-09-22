@@ -1,0 +1,37 @@
+app-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 4rem;
+  z-index: 2;
+}
+
+main {
+  position: absolute;
+  top: 4rem;
+  z-index: 1;
+  width: 100%;
+}
+
+app-side-nav {
+  position: absolute;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 4rem);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-color: rgba(34,34,34,1);
+  border-top: 1px solid white;
+}
+
+.display-area {
+  height: calc(100vh - 4rem);
+  position: absolute;
+  left: 250px;
+  border: 7px solid deepskyblue;
+  width: calc(100vw - 250px);
+  border-top: 1px solid white;
+}
+
+app-register-product {
+  height: 100%;
+}

@@ -1,0 +1,52 @@
+.deeppink-border {
+  border: 1px solid deeppink;
+
+}
+
+div.side-nav-content {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: white;
+}
+
+  ul.nav-list {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 10px;
+    height: 220px;
+  }
+
+    li.nav-list-item {
+      height: 50px;
+      align-items: center;
+      display: flex;
+    }
+
+    li.nav-list-item:hover {
+      background-color: rgba(255,255,255,0.3);
+      border-radius: 10px;
+    }
+
+      li.nav-list-item i {
+        font-size: 20px;
+        height: 25px;
+        color: white;
+        width: 25px;
+        margin: 0 15px 0 10px;
+        line-height: 25px;
+        text-align: center;
+      }
+
+li.nav-list-item span {
+  text-transform: capitalize;
+  width: 170px;
+}
+
+  li.nav-list-item span a {
+    text-decoration: none;
+    color: white;
+  }
