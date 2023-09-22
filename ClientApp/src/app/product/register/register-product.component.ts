@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, tap} from "rxjs";
 @Component({
-  selector: 'app-register-product-component',
+  selector: 'app-register-product',
   templateUrl: './register-product.component.html'
 })
 export class RegisterProductComponent {
