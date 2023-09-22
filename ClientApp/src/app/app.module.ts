@@ -5,17 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterProductComponent } from "./product/register/register-product.component";
 import { ProductListComponent } from "./product/list/product-list.component";
-import {ProductModule} from "./product/product.module";
+import { ProductModule } from "./product/product.module";
+import { SideNavComponent } from "./side-nav/side-nav.component";
+import {HeaderComponent} from "./header/header.component";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent
+    SideNavComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
