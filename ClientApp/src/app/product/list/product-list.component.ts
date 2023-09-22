@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import {Product} from "../../interfaces";
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html'
@@ -42,12 +44,4 @@ export class ProductListComponent {
       });
   }
 
-}
-
-interface Product {
-  name: string;
-  price: number;
-  quantity: number;
-  description: string;
-  type: string;
 }
