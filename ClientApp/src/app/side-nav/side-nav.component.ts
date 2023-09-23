@@ -6,21 +6,9 @@ import {sidenavItems} from "../sidenav-items";
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent {
 
   //properties
-  public isExpanded: boolean = false;
-  public _sidenavItems: {number: number, name: string, icon: string, route: string}[] = null!
-  ngOnInit(): void {
-    this._sidenavItems = sidenavItems;
-  }
-
-  //methods
-  collapse() {
-    this.isExpanded = false;
-  }
-
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
+  @Input() sideNavStatus: boolean = true;
+  public _sidenavItems: {number: number, name: string, icon: string, route: string}[] = sidenavItems;
 }
