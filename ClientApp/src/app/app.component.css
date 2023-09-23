@@ -8,30 +8,36 @@ app-header {
 
 main {
   position: absolute;
+  width: 100%;
   top: 4rem;
   z-index: 1;
-  width: 100%;
 }
 
 app-side-nav {
   position: absolute;
   left: 0;
-  width: 250px;
+  width: 60px;
   height: calc(100vh - 4rem);
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background-color: rgba(34,34,34,1);
   border-top: 1px solid white;
+  overflow-x: hidden;
+  white-space: nowrap;
+  transition: width 250ms ease-in;
+}
+
+.app-side-nav-open {
+  width: 250px !important;
 }
 
 .display-area {
-  height: calc(100vh - 4rem);
   position: absolute;
-  left: 250px;
-  border: 7px solid deepskyblue;
-  width: calc(100vw - 250px);
-  border-top: 1px solid white;
+  left: 60px;
+  width: calc(100% - 60px);
+  transition: left 250ms ease-in, width 250ms ease-in;
 }
 
-app-register-product {
-  height: 100%;
+.display-area-shrink {
+  width: calc(100vw - 250px);
+  left: 250px;
 }
