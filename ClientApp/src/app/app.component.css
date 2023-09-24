@@ -21,7 +21,7 @@ app-side-nav {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background-color: rgba(34,34,34,1);
   border-top: 1px solid white;
-  overflow-x: hidden;
+  overflow: hidden;
   white-space: nowrap;
   transition: width 250ms ease-in;
 }
