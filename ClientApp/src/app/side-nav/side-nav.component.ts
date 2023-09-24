@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {sidenavItems} from "../sidenav-items";
+import {sidenavItems} from "./sidenav-items";
 
 @Component({
   selector: 'app-side-nav',
