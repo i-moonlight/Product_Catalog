@@ -1,57 +1,60 @@
-<div class="mt-5 pt-3 rounded-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="text-start mb-4">Catálogo de Produtos</h3>
+<div class="row bg-danger h-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-start mb-4">Catálogo de Produtos</h3>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container pt-3 pb-2 rounded-2">
-  <table class='table table-hover table-bordered table-responsive-md' aria-labelledby="tableLabel" *ngIf="products.length">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Quantidade</th>
-        <th>Descrição</th>
-        <th>Tipo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.quantity }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.type }}</td>
-      </tr>
-    </tbody>
 
-    <tfoot class="row m-0" >
-      <nav class="col-12 p-0" aria-label="Page navigation example">
-        <ul class="pagination justify-content-center my-0">
-          <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
-            <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Previous</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
-          </li>
-          <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
-            <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </tfoot>
-  </table>
-</div>
-
-<div class="container" *ngIf="!products?.length">
-  <div class="row">
-    <div class="col-md-12">
-      <p class="text-start mb-4">Não há produtos cadastrados.</p>
+    <div *ngIf='products.length' class="h-75" >
+      <div class="grid row container bg-primary flex justify-content-end m-0 p-5">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 " *ngFor="let product of products">
+            <div class="card mh-75">
+              <img class="card-img card-img-top"
+                   alt="Imagem meramente ilustrativa"
+                   role="img"
+                   [ngSrc]=product.imageRef [width]="286" [height]="186" >
+              <div class="card-body">
+                <h3 class="card-title">{{product.name}}</h3>
+                <p class="card-text">Text {{product.description}}</p>
+                <h6>Categoria: {{ product.type == '0' ? 'Orgânico' : 'Inorgânico'}}.</h6>
+                <div (click)="deleteProduct(product.id)" class="d-flex justify-content-between install mt-3"><span>Restantes {{ product.quantity }}.</span>
+                  <span class="text-primary">Delete&nbsp;
+                    <i class="fa fa-angle-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column justify-content-center" style="height: 10svh">
+        <div class=" d-flex flex-column justify-content-center">
+          <nav aria-label="Page navigation">
+            <ul class="pagination my-0">
+              <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
+                <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Previous</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
+              </li>
+              <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
+                <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="container" *ngIf="!products?.length">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="text-start mb-4">Não há produtos cadastrados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 </div>
+
+
 
