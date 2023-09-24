@@ -2,12 +2,12 @@
 
   <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
     <li [ngClass]="{'display-only-inside-icon': !sideNavStatus}"  class="nav-list-item " *ngFor="let item of _sidenavItems">
-      <i class="{{item.icon}}"></i>
-      <span *ngIf="sideNavStatus">
-        <a  [routerLink]="[item.route]">
+      <a [routerLink]="[item.route]">
+        <i class="{{item.icon}}"></i>
+        <span *ngIf="sideNavStatus">
           {{item.name}}
-        </a>
-      </span>
+        </span>
+      </a>
     </li>
   </ul>
 
