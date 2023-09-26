@@ -1,6 +1,7 @@
-.deeppink-border {
-  border: 1px solid deeppink;
+.resize-margin-to-collapse {
+  margin: 10px 10px 0 7px !important;
 }
+
 .display-only-inside-icon {
   width:45px !important
 }
