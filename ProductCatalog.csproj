@@ -35,6 +35,7 @@
       <Folder Include="ClientApp\assets\css\" />
       <Folder Include="ClientApp\assets\fonts\" />
       <Folder Include="ClientApp\assets\js\" />
+      <Folder Include="ClientApp\src\app\enums\" />
       <Folder Include="ClientApp\src\app\product\list\product-list\" />
     </ItemGroup>
 
