@@ -27,14 +27,18 @@
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**"/>
         <Content Remove="ClientApp\assets\fonts\Anek_Tamil\**" />
         <None Remove="ClientApp\assets\fonts\Anek_Tamil\**" />
+        <Content Remove="ClientApp\src\app\components\root\**" />
+        <None Remove="ClientApp\src\app\components\root\**" />
+        <Content Remove="ClientApp\assets\css\**" />
+        <None Remove="ClientApp\assets\css\**" />
+        <Content Remove="ClientApp\assets\**" />
+        <None Remove="ClientApp\assets\**" />
     </ItemGroup>
 
 
 
     <ItemGroup>
-      <Folder Include="ClientApp\assets\css\" />
-      <Folder Include="ClientApp\assets\fonts\" />
-      <Folder Include="ClientApp\assets\js\" />
+      <Folder Include="ClientApp\src\app\components\shared\" />
       <Folder Include="ClientApp\src\app\enums\" />
       <Folder Include="ClientApp\src\app\product\list\product-list\" />
     </ItemGroup>
@@ -43,12 +47,18 @@
 
     <ItemGroup>
       <Compile Remove="ClientApp\assets\fonts\Anek_Tamil\**" />
+      <Compile Remove="ClientApp\src\app\components\root\**" />
+      <Compile Remove="ClientApp\assets\css\**" />
+      <Compile Remove="ClientApp\assets\**" />
     </ItemGroup>
 
 
 
     <ItemGroup>
       <EmbeddedResource Remove="ClientApp\assets\fonts\Anek_Tamil\**" />
+      <EmbeddedResource Remove="ClientApp\src\app\components\root\**" />
+      <EmbeddedResource Remove="ClientApp\assets\css\**" />
+      <EmbeddedResource Remove="ClientApp\assets\**" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
