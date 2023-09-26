@@ -5,12 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterProductComponent } from "./product/register/register-product.component";
-import { ProductListComponent } from "./product/list/product-list.component";
-import { ProductModule } from "./product/product.module";
-import { SideNavComponent } from "./side-nav/side-nav.component";
-import { HeaderComponent } from "./header/header.component";
+import {SideNavComponent} from "./components/shared/side-nav/side-nav.component";
+import {HomeComponent} from "./components/home/home.component";
+import {HeaderComponent} from "./components/shared/header/header.component";
+import {ProductModule} from "./components/product/product.module";
+import {RegisterProductComponent} from "./components/product/register/register-product.component";
+import {ProductListComponent} from "./components/product/list/product-list.component";
+
 
 
 @NgModule({
