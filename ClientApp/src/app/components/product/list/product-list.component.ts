@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Product} from "../../../interfaces";
 
-import {Product} from "../../interfaces";
+
 
 @Component({
   selector: 'app-product-list',

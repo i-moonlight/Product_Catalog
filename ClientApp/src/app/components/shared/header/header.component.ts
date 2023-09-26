@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output, OnInit, HostListener} from '@angular/core';
-import {ScreenDimensionsEnum} from "../enums/screen-dimensions";
+import {ScreenDimensionsEnum} from "../../../enums/screen-dimensions";
 
 @Component({
   selector: 'app-header',
