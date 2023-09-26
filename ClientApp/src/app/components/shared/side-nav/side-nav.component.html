@@ -1,4 +1,4 @@
-<div class="side-nav-content">
+<div [ngClass]="{'resize-margin-to-collapse': !sideNavStatus}" class="side-nav-content">
 
   <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
     <li [ngClass]="{'display-only-inside-icon': !sideNavStatus}"  class="nav-list-item " *ngFor="let item of _sidenavItems">
