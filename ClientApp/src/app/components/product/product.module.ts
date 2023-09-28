@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { ProductListComponent } from "./list/product-list.component";
-import {RegisterProductComponent} from "./register/register-product.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
     ProductListComponent,
-    RegisterProductComponent
+    ProductCardComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxMaskModule.forRoot(),
+        NgOptimizedImage
+    ],
   exports: [
     ProductListComponent,
-    RegisterProductComponent
   ]
 })
 export class ProductModule { }
