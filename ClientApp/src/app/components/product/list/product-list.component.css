@@ -1,0 +1,10 @@
+/* styles applied directly to the app-product-list element/component only */
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  overflow: scroll;
+  height: 100%;
+}
+

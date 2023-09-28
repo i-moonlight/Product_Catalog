@@ -1,57 +1,55 @@
-<div class="mt-5 pt-3 rounded-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="text-start mb-4">Catálogo de Produtos</h3>
+<!--<div class="d-flex flex-column" style="height: 100svh !important;" >-->
+
+
+  <div class="pt-3 rounded-2 pl-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 p-0">
+          <h3 class="text-start mb-4">Catálogo de Produtos</h3>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container pt-3 pb-2 rounded-2">
-  <table class='table table-hover table-bordered table-responsive-md' aria-labelledby="tableLabel" *ngIf="products.length">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Quantidade</th>
-        <th>Descrição</th>
-        <th>Tipo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.quantity }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.type }}</td>
-      </tr>
-    </tbody>
-
-    <tfoot class="row m-0" >
-      <nav class="col-12 p-0" aria-label="Page navigation example">
-        <ul class="pagination justify-content-center my-0">
-          <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
-            <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Previous</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
-          </li>
-          <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
-            <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </tfoot>
-  </table>
-</div>
-
-<div class="container" *ngIf="!products?.length">
-  <div class="row">
-    <div class="col-md-12">
-      <p class="text-start mb-4">Não há produtos cadastrados.</p>
+  <div class="container ">
+    <div class="row">
+        <app-product-card
+          class=""
+          [products]="products">
+        </app-product-card>
     </div>
   </div>
-</div>
 
+  <div class="container">
+      <div class="row">
+        <nav class="col-12 p-0" aria-label="Page navigation example">
+          <ul class="pagination justify-content-center my-0">
+            <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
+              <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Previous</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
+            </li>
+            <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
+              <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="container" *ngIf="!products?.length">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-start mb-4">Não há produtos cadastrados.</p>
+      </div>
+    </div>
+  </div>
+
+<!--</div>-->
