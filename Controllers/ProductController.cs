@@ -12,7 +12,7 @@ public sealed class ProductController : ControllerBase
 {
     private readonly ProductCatalogDbContext _context;
     private readonly ILogger<ProductController> _logger;
-    private const int PageSize = 5;
+    private const int PageSize = 9;
     
     public ProductController(
         ProductCatalogDbContext context, 
@@ -30,7 +30,7 @@ public sealed class ProductController : ControllerBase
         HttpContext.Response.Headers.Add("totalPages",totalPages.ToString());
         
         var products = await _context.Products
-            .OrderBy(p => p.Name)
+            .OrderBy(p => p.CreatedAt)
             .Skip((pageIndex - 1) * PageSize)
             .Take(PageSize)
             .ToListAsync();
@@ -56,6 +56,7 @@ public sealed class ProductController : ControllerBase
             Type = Enum.Parse<ProductTypeEnum>(productModel.Type),
             Price = productModel.Price,
             Description = productModel.Description,
+            ImageRef = productModel.ImageRef,
             CreatedAt = DateTimeOffset.Now
         };
         
