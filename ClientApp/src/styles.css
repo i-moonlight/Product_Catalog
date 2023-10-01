@@ -3,7 +3,12 @@
 
 :root {
   --primary-background: #EBF1FF;
+  --secondary-background: #F5F5F5;
+  --sidenav-background: #343A40;
+  --header-background: #343A40;
+  --hint-font-size: 12px;
   --primary-font-family: 'Poppins', sans-serif;
+
 }
 
 @font-face {
