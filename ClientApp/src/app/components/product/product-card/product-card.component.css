@@ -1,7 +1,6 @@
 :host{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   padding: 1rem !important;
 }
@@ -9,22 +8,21 @@
 .card {
   min-width: 17.875rem;
   min-height: 22.5rem;
+  margin-bottom: 1rem;
 }
+
   .card-img-top {
-    /*width: 17.875rem;*/
     min-height: 11.25rem;
     height: 11.25rem;
   }
   .card-body {
-    /*width: 17.875rem;*/
     min-height: 11.25rem;
   }
-
-
 
 @media screen and (min-width: 380px) and (max-width: 575px) {
   .card {
     max-width: 17.875rem;
+    min-width: 17.875rem;
     min-height: 22.5rem;
   }
 }

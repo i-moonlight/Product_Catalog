@@ -1,10 +1,12 @@
-<div class="container d-inline-flex justify-content-center">
-  <form class="row col-6 d-inline-flex flex-column mx-0 my-5" [formGroup]="myForm" (ngSubmit)="submit()">
-    <h3 class="mb-3">Cadastrar Produto</h3>
+<div class="container row d-inline-flex justify-content-center">
+  <form class="style-form-register col-12 col-sm-12 col-md-8 col-lg-8 d-inline-flex flex-column mx-0 my-5" [formGroup]="myForm" (ngSubmit)="submit()">
     <div class="mb-3">
+      <h3>Cadastrar Produto</h3>
+    </div>
+    <div class="mb-3 justify-content-md-center">
       <label for="name" class="form-label">Nome</label>
       <input formControlName="name" type="text" class="form-control" name="name" id="name">
-      <div id="NameHelp" class="form-text">Digite o nome do produto</div>
+      <div id="NameHelp" class="form-text hint-font-size ">Digite o nome do produto</div>
       <div *ngIf="myForm.get('name')?.errors?.required && myForm.get('name')?.touched" class="alert alert-danger">
         Nome é obrigatório
       </div>
@@ -15,7 +17,7 @@
     <div class="mb-3">
       <label for="price" class="form-label">Preço</label>
       <input prefix="R$ " mask="00.00 || 000.00 || 0000.00" formControlName="price" type="text" class="form-control" id="price">
-      <div id="PriceHelp" class="form-text">Digite o preço do produto</div>
+      <div id="PriceHelp" class="form-text hint-font-size">Digite o preço do produto</div>
       <div *ngIf="myForm.get('price')?.errors?.required && myForm.get('price')?.touched" class="alert alert-danger">
         Preço é obrigatório
       </div>
@@ -25,8 +27,9 @@
     </div>
     <div class="mb-3">
       <label for="inputType" class="form-label">Tipo</label>
-      <select formControlName="type" class="form-select" name="type" id="inputType">
-        <option>---Selecione o tipo de produto---</option>
+      <br>
+      <select formControlName="type" class="form-select col-12 col-sm-12 col-md-12" name="type" id="inputType">
+        <option>-- Selecione o tipo de produto --</option>
         <option *ngFor="let productType of productTypes" [value]="productType['value']" >
           {{productType["name"]}}
         </option>
@@ -38,7 +41,7 @@
     <div class="mb-3">
       <label for="textAreaDescription" class="form-label">Descrição</label>
       <textarea formControlName="description" class="form-control" id="textAreaDescription" rows="3"></textarea>
-      <div id="DescriptionHelp" class="form-text">Digite a descrição do produto</div>
+      <div id="DescriptionHelp" class="form-text hint-font-size">Digite a descrição do produto</div>
       <div *ngIf="myForm.get('description')?.errors?.required && myForm.get('description')?.touched" class="alert alert-danger">
         Descrição é obrigatória
       </div>
@@ -49,13 +52,24 @@
     <div class="mb-3">
       <label for="inputQuantity" class="form-label">Quantidade</label>
       <input formControlName="quantity" type="number" class="form-control" id="inputQuantity">
-      <div id="QuantityHelp" class="form-text">Digite a quantidade de produtos</div>
+      <div id="QuantityHelp" class="form-text hint-font-size">Digite a quantidade de produtos</div>
       <div *ngIf="myForm.get('quantity')?.errors?.required && myForm.get('quantity')?.touched" class="alert alert-danger">
         Quantidade é obrigatória
       </div>
       <div *ngIf="myForm.get('quantity')?.errors?.min && myForm.get('quantity')?.touched" class="alert alert-danger">
         Quantidade deve ser maior que 0
       </div>
+    </div>
+    <div class="mb-3">
+      <label for="inputImageRef" class="form-label">Url da imagem do produto</label>
+      <input formControlName="imageRef" type="text" class="form-control" id="inputImageRef">
+      <div id="ImageRefHelp" class="form-text hint-font-size">Digite a url da imagem do produto</div>
+<!--      <div *ngIf="myForm.get('productImageUrl')?.errors?.required && myForm.get('quantity')?.touched" class="alert alert-danger">-->
+<!--        Quantidade é obrigatória-->
+<!--      </div>-->
+<!--      <div *ngIf="myForm.get('quantity')?.errors?.min && myForm.get('quantity')?.touched" class="alert alert-danger">-->
+<!--        Quantidade deve ser maior que 0-->
+<!--      </div>-->
     </div>
     <div>
       <button type="submit" class="btn btn-primary w-100 mt-3">Enviar</button>

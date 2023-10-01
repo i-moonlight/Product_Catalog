@@ -5,7 +5,8 @@ import {Router} from "@angular/router";
 import {catchError, tap} from "rxjs";
 @Component({
   selector: 'app-register-product',
-  templateUrl: './register-product.component.html'
+  templateUrl: './register-product.component.html',
+  styleUrls: ['register-product-component.css']
 })
 export class RegisterProductComponent {
 
@@ -30,13 +31,14 @@ export class RegisterProductComponent {
       price: ['', [Validators.required, Validators.min(1)]],
       quantity: ['', [Validators.required, Validators.min(1)]],
       description: ['', [Validators.required, Validators.minLength(25)]],
-      type: ['---Selecione o tipo de produto---', [Validators.required]],
+      type: ['-- Selecione o tipo de produto --', [Validators.required]],
+      imageRef: ['', ],
     });
   }
 
   public productTypes: Array<{ name: string; value: number }> = [
-    { name: "Organic", value: 0},
-    { name: "Non-Organic", value: 1}
+    { name: "Orgânico", value: 0},
+    { name: "Inôrganico", value: 1}
   ];
 
   public submit() {
