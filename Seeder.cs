@@ -58,7 +58,7 @@ public static class Seeder
             .Select(index => new Product
             {
                 Name = "Produto" + rand.Next(1, 1000) ,
-                Description = Lorem.Ipsum(10, true),
+                Description = Lorem.Ipsum(7, true),
                 CreatedAt = rand.Date(DateTimeOffset.Now),
                 Price =  new decimal(rand.Next(10, 250)),
                 Quantity = rand.Next(1, 100),
