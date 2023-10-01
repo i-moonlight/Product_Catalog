@@ -1,0 +1,13 @@
+:host{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center;
+  padding: 3rem;
+}
+
+:host > div:nth-child(1) {
+  border-radius: 3rem !important;
+  background-color: var(--secondary-background, #f5f5f5 ) !important;
+}

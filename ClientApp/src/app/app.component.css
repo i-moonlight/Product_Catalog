@@ -4,6 +4,7 @@ app-header {
   top: 0;
   height: 4rem;
   z-index: 2;
+  background-color: var(--header-background, #343a40) !important;
 }
 
 main {
@@ -19,7 +20,7 @@ app-side-nav {
   width: 60px;
   height: calc(100vh - 4rem);
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  background-color: rgba(34,34,34,1);
+  background-color: var(--sidenav-background, #343a40) !important;
   border-top: 1px solid white;
   overflow: hidden;
   white-space: nowrap;

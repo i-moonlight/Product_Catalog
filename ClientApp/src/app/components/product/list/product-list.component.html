@@ -1,47 +1,38 @@
-<!--<div class="d-flex flex-column" style="height: 100svh !important;" >-->
 
+  <div class="container">
 
-  <div class="pt-3 rounded-2 pl-0">
-    <div class="container">
+    <div class="container pt-3">
       <div class="row">
-        <div class="col-md-12 p-0">
-          <h3 class="text-start mb-4">Catálogo de Produtos</h3>
+        <div class="row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 w-100">
+          <h3 class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-start mb-4">Catálogo de Produtos</h3>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container ">
     <div class="row">
         <app-product-card
-          class=""
           [products]="products">
         </app-product-card>
     </div>
   </div>
 
-  <div class="container">
-      <div class="row">
-        <nav class="col-12 p-0" aria-label="Page navigation example">
+  <div class="container p-3">
+      <div class="row w-100">
+        <nav class="d-flex justify-content-center col-12 p-0" aria-label="Page navigation example">
           <ul class="pagination justify-content-center my-0">
             <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
-              <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Previous</a>
+              <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Anterior</a>
             </li>
             <li class="page-item">
               <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
             </li>
             <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
-              <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Next</a>
+              <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Próximo</a>
             </li>
           </ul>
         </nav>
       </div>
   </div>
-
-
-
-
-
 
 
   <div class="container" *ngIf="!products?.length">
@@ -52,4 +43,3 @@
     </div>
   </div>
 
-<!--</div>-->
