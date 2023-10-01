@@ -23,5 +23,5 @@ public class Product
     public required string Description { get; set; }
     [Required]
     public DateTimeOffset CreatedAt { get; set; }
-    public string ImageRef { get; set; } = null!;
+    public string? ImageRef { get; set; }
 }
