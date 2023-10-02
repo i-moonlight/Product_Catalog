@@ -38,6 +38,20 @@ public sealed class ProductController : ControllerBase
         _logger.LogInformation("Produtos retornados com sucesso.");
         return Ok(products);
     }
+
+    [HttpGet("byName")]
+    public async Task<IActionResult> GetByName()
+    {
+        //check if there is a querystring named 'productName'
+        Request.Query.TryGetValue("productName", out var productName);
+        
+        var filteredProductsByName = await _context.Products
+            .Where(p => p.Name.ToLower().Trim().Contains(productName.ToString().ToLower().Trim()))
+            .ToListAsync();
+                
+        _logger.LogInformation("Produtos filtrados por nome.");
+        return Ok(filteredProductsByName);
+    }
     
     [HttpPost]
     public IActionResult Post(ProductModel productModel)
