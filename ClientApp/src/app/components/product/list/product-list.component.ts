@@ -1,7 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, Inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Product} from "../../../interfaces";
-
 
 
 @Component({
@@ -10,11 +9,13 @@ import {Product} from "../../../interfaces";
   styleUrls: ['product-list.component.css']
 })
 export class ProductListComponent {
+  public searchInputPlhdr: string = "Digite o nome do produto";
   public products: Product[] = [];
   public pageIndex = 1;
   public totalPages: number = 1;
   private _baseUrl: string;
   private _http: HttpClient;
+  public searchInput: string = '';
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this._http = http;
     this._baseUrl = baseUrl;
@@ -38,6 +39,7 @@ export class ProductListComponent {
     }
   }
 
+
   fetchProducts(pageIndex:number) {
     this._http.get<Product[]>(this._baseUrl + 'product?pageIndex=' + this.pageIndex, { observe: 'response' })
       .subscribe((data) => {
@@ -46,4 +48,16 @@ export class ProductListComponent {
       });
   }
 
+  fetchProductsByName(productName:string) {
+
+    if(productName.length == 0){ //check if the search input is empty
+      this.fetchProducts(this.pageIndex);
+      return;
+    }
+
+    this._http.get<Product[]>(this._baseUrl + 'product/byName?productName=' + productName, { observe: 'response' })
+      .subscribe((data) => {
+        this.products = data.body!;
+      });
+  }
 }
