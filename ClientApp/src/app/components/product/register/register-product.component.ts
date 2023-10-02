@@ -1,8 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {catchError, tap} from "rxjs";
+import {ProductService} from "../product.service";
 @Component({
   selector: 'app-register-product',
   templateUrl: './register-product.component.html',
@@ -10,20 +8,10 @@ import {catchError, tap} from "rxjs";
 })
 export class RegisterProductComponent {
 
-  private _router: Router;
-  private _baseUrl: string;
-  private _http: HttpClient;
+
   myForm: FormGroup = this.fb.group({});
   constructor(private fb: FormBuilder,
-              http: HttpClient,
-              @Inject('BASE_URL') baseUrl: string,
-              router: Router)
-
-  {
-      this._http = http;
-      this._baseUrl = baseUrl;
-      this._router = router;
-  }
+              private productService: ProductService) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -42,18 +30,8 @@ export class RegisterProductComponent {
   ];
 
   public submit() {
-
-    this._http.post(this._baseUrl + 'product',
-      this.myForm.value, {observe: 'response'})
-      .pipe(
-        tap(response =>
-          this._router.navigate(['/product-list'])),
-        catchError((error): any  => {
-          alert(error.error);
-        })
-      )
-      .subscribe();
-
+    this.productService
+        .PostProduct(this.myForm)
   }
 
 }
