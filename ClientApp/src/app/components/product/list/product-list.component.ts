@@ -1,6 +1,8 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnDestroy} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from "../../../interfaces";
+import {ProductService} from "../product.service";
+import {Subject, Subscription, takeUntil} from "rxjs";
 
 
 @Component({
@@ -8,7 +10,9 @@ import {Product} from "../../../interfaces";
   templateUrl: './product-list.component.html',
   styleUrls: ['product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnDestroy {
+
+  //properties
   public searchInputPlhdr: string = "Digite o nome do produto";
   public products: Product[] = [];
   public pageIndex = 1;
@@ -16,7 +20,11 @@ export class ProductListComponent {
   private _baseUrl: string;
   private _http: HttpClient;
   public searchInput: string = '';
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  private notifier = new Subject()
+  constructor(http: HttpClient,
+              @Inject('BASE_URL') baseUrl: string,
+              private productService: ProductService,
+  ) {
     this._http = http;
     this._baseUrl = baseUrl;
   }
@@ -41,7 +49,10 @@ export class ProductListComponent {
 
 
   fetchProducts(pageIndex:number) {
-    this._http.get<Product[]>(this._baseUrl + 'product?pageIndex=' + this.pageIndex, { observe: 'response' })
+
+    const products = this.productService
+      .fetchProducts(pageIndex)
+      .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
         this.totalPages = Number(data.headers.get('totalPages'));
         this.products = data.body as Product[];
@@ -50,14 +61,18 @@ export class ProductListComponent {
 
   fetchProductsByName(productName:string) {
 
-    if(productName.length == 0){ //check if the search input is empty
-      this.fetchProducts(this.pageIndex);
-      return;
-    }
-
-    this._http.get<Product[]>(this._baseUrl + 'product/byName?productName=' + productName, { observe: 'response' })
+    this.productService
+      .fetchProductsByName(productName)
+      .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
-        this.products = data.body!;
+        this.products = data.body as Product[];
       });
+
+  }
+
+
+  ngOnDestroy(): void {
+    this.notifier.next(1);
+    this.notifier.complete();
   }
 }

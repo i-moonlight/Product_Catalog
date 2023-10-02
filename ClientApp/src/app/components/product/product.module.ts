@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductCardComponent } from './product-card/product-card.component';
 import {RegisterProductComponent} from "./register/register-product.component";
 import {SharedModule} from "../shared/shared.module";
+import {ProductService} from "./product.service";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,9 @@ import {SharedModule} from "../shared/shared.module";
   ],
   exports: [
     ProductListComponent,
-  ]
+  ],
+  providers: [
+    ProductService
+  ],
 })
 export class ProductModule { }
