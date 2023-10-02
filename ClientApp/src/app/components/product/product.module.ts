@@ -3,9 +3,10 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { ProductListComponent } from "./list/product-list.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductCardComponent } from './product-card/product-card.component';
 import {RegisterProductComponent} from "./register/register-product.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -13,12 +14,14 @@ import {RegisterProductComponent} from "./register/register-product.component";
     ProductCardComponent,
     RegisterProductComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        NgxMaskModule.forRoot(),
-        NgOptimizedImage
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    NgOptimizedImage,
+    SharedModule,
+    FormsModule
+  ],
   exports: [
     ProductListComponent,
   ]

@@ -11,20 +11,20 @@ import {HeaderComponent} from "./components/shared/header/header.component";
 import {ProductModule} from "./components/product/product.module";
 import {RegisterProductComponent} from "./components/product/register/register-product.component";
 import {ProductListComponent} from "./components/product/list/product-list.component";
+import {SharedModule} from "./components/shared/shared.module";
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SideNavComponent,
-    HomeComponent,
-    HeaderComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     ProductModule,
+    SharedModule,
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
