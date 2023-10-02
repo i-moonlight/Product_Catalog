@@ -33,12 +33,15 @@
         <None Remove="ClientApp\assets\css\**" />
         <Content Remove="ClientApp\assets\**" />
         <None Remove="ClientApp\assets\**" />
+        <Content Remove="ClientApp\src\app\components\shared\shared\**" />
+        <None Remove="ClientApp\src\app\components\shared\shared\**" />
+        <Content Remove="ClientApp\src\app\components\shared\search-input\**" />
+        <None Remove="ClientApp\src\app\components\shared\search-input\**" />
     </ItemGroup>
 
 
 
     <ItemGroup>
-      <Folder Include="ClientApp\src\app\components\shared\" />
       <Folder Include="ClientApp\src\app\enums\" />
     </ItemGroup>
 
@@ -49,6 +52,8 @@
       <Compile Remove="ClientApp\src\app\components\root\**" />
       <Compile Remove="ClientApp\assets\css\**" />
       <Compile Remove="ClientApp\assets\**" />
+      <Compile Remove="ClientApp\src\app\components\shared\shared\**" />
+      <Compile Remove="ClientApp\src\app\components\shared\search-input\**" />
     </ItemGroup>
 
 
@@ -58,6 +63,8 @@
       <EmbeddedResource Remove="ClientApp\src\app\components\root\**" />
       <EmbeddedResource Remove="ClientApp\assets\css\**" />
       <EmbeddedResource Remove="ClientApp\assets\**" />
+      <EmbeddedResource Remove="ClientApp\src\app\components\shared\shared\**" />
+      <EmbeddedResource Remove="ClientApp\src\app\components\shared\search-input\**" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
