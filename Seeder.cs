@@ -59,7 +59,7 @@ public static class Seeder
             {
                 Name = "Produto" + rand.Next(1, 1000) ,
                 Description = Lorem.Ipsum(7, true),
-                CreatedAt = rand.Date(DateTimeOffset.Now),
+                CreatedAt = rand.Date(DateTimeOffset.UtcNow),
                 Price =  new decimal(rand.Next(10, 250)),
                 Quantity = rand.Next(1, 100),
                 Type = Enumerable.Range(0,2)
