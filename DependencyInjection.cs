@@ -8,7 +8,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<ProductCatalogDbContext>(
             options => options.UseNpgsql(
-                configuration.GetConnectionString("ProductCatalogConnection")!));
+                configuration.GetConnectionString("ProductCatalogConnectionOnRailway")!));
 
         return services;
     }
