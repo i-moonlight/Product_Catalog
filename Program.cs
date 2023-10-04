@@ -5,8 +5,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureSqlContext(builder.Configuration);
-
+builder.WebHost.UseKestrel(options =>
+{
+    var portVar = Environment.GetEnvironmentVariable("PORT");
+    if (portVar is { Length: > 0 } && int.TryParse(portVar, out int port))
+    {
+        options.ListenAnyIP(port);
+    }
+    
+});
 var app = builder.Build();
+
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try
