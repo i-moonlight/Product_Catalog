@@ -51,7 +51,7 @@ public static class Seeder
 
     public static void Initialize(ProductCatalogDbContext context)
     {
-        if (context.Products.Any()) return;
+        if (context.Products!.Any()) return;
         var rand = new Random();
         
         var products = Enumerable.Range(1, 36)
@@ -59,7 +59,7 @@ public static class Seeder
             {
                 Name = "Produto" + rand.Next(1, 1000) ,
                 Description = Lorem.Ipsum(7, true),
-                CreatedAt = rand.Date(DateTimeOffset.UtcNow),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
                 Price =  new decimal(rand.Next(10, 250)),
                 Quantity = rand.Next(1, 100),
                 Type = Enumerable.Range(0,2)
@@ -70,7 +70,7 @@ public static class Seeder
             })
             .ToList();
         
-        context.Products.AddRange(products);
+        context.Products!.AddRange(products);
         context.SaveChanges();
     }
 }
