@@ -1,9 +1,16 @@
 using ProductCatalog;
 
 var builder = WebApplication.CreateBuilder(args);
-
+IConfiguration configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+var config = new ConfigurationBuilder()
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+configuration = config.Build();
+
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.WebHost.UseKestrel(options =>
 {
