@@ -19,7 +19,12 @@ public static class DependencyInjection
     private static string GetConnectionString(IConfiguration configuration)
     {
         var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-        return BuildConnectionStringFromUrl(databaseUrl!);
+
+        var connectionString = string.IsNullOrEmpty(databaseUrl) ? 
+            configuration.GetConnectionString("DefaultConnection")! : 
+            BuildConnectionStringFromUrl(databaseUrl);
+
+        return connectionString;
     }
         
     private static string BuildConnectionStringFromUrl(string databaseUrl)
@@ -36,6 +41,7 @@ public static class DependencyInjection
             SslMode = SslMode.Require,
             TrustServerCertificate = true
         };
+        Console.WriteLine(builder);
         return builder.ToString();
     }
     
