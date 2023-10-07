@@ -18,11 +18,8 @@ public static class DependencyInjection
     
     private static string GetConnectionString(IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
         var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-        return string.IsNullOrEmpty(databaseUrl) 
-            ? connectionString! 
-            : BuildConnectionStringFromUrl(databaseUrl);
+        return BuildConnectionStringFromUrl(databaseUrl!);
     }
         
     private static string BuildConnectionStringFromUrl(string databaseUrl)
