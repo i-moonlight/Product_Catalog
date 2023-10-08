@@ -71,7 +71,7 @@ public sealed class ProductController : ControllerBase
             Price = productModel.Price,
             Description = productModel.Description,
             ImageRef = productModel.ImageRef,
-            CreatedAt = DateTimeOffset.Now
+            CreatedAt = DateTimeOffset.Now.ToUniversalTime()
         };
         
         _context.Products.Add(product);
