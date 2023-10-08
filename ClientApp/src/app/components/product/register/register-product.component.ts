@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ProductService} from "../product.service";
 @Component({
@@ -31,7 +31,7 @@ export class RegisterProductComponent {
 
   public submit() {
     this.productService
-        .PostProduct(this.myForm)
+        .postProduct(this.myForm.value)
   }
 
 }

@@ -41,7 +41,6 @@ public static class DependencyInjection
             SslMode = SslMode.Require,
             TrustServerCertificate = true
         };
-        Console.WriteLine(builder);
         return builder.ToString();
     }
     
