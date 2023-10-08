@@ -10,7 +10,7 @@ export class ProductService {
 
   //properties
   private _router: Router;
-  private _baseUrl: string;
+  private readonly _baseUrl: string;
   private _http: HttpClient;
   public totalPages: number = 1;
   public pageIndex = 1;
@@ -37,10 +37,8 @@ export class ProductService {
       .get<Product[]>(this._baseUrl + 'product/byName?productName=' + productName,
         { observe: 'response' })
   }
-
-  public PostProduct(formData: FormGroup<any>){
-
-    this._http.post(this._baseUrl + 'product',
+  public postProduct(formData: FormGroup){
+    this._http.post<Product>(this._baseUrl + 'product',
       formData, {observe: 'response'})
       .pipe(
         tap(response =>
@@ -48,6 +46,6 @@ export class ProductService {
         catchError((error): any  => {
           alert(error.error);
         })
-      );
+      ).subscribe()
   }
 }
