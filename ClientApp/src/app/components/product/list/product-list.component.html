@@ -12,17 +12,17 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">
         <div class="input-group">
+          <span class="input-group-append">
+              <button (click)="fetchProductsByName(searchInput)" class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                  <i class="fa fa-search"></i>
+              </button>
+          </span>
           <input [placeholder]="searchInputPlhdr"
                  class="form-control border-end-0 border rounded-pill"
                  type="search"
                  id="example-search-input"
                  [(ngModel)]="searchInput"
                  (ngModelChange)="searchInput.length == 0 ? fetchProducts(pageIndex) : '' ">
-          <span class="input-group-append">
-              <button (click)="fetchProductsByName(searchInput)" class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
-                  <i class="fa fa-search"></i>
-              </button>
-          </span>
         </div>
       </div>
     </div>
