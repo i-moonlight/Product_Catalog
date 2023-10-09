@@ -20,7 +20,19 @@
       "es2018",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@components/shared/sidenav": ["src/app/components/shared/side-nav/side-nav.component.ts"],
+      "@components/shared/header": ["src/app/components/shared/header/header.component.ts"],
+      "@components/product/card": ["src/app/components/product/product-card/product-card.component.ts"],
+      "@components/product/list": ["src/app/components/product/list/product-list.component.ts"],
+      "@components/product/module": ["src/app/components/product/product.module.ts"],
+      "@components/product/register": ["src/app/components/product/register/register-product.component.ts"],
+      "@components/home": ["src/app/components/home/home.component.ts"],
+      "@enums/screen-dimensions": ["src/app/enums/screen-dimensions.ts"],
+      "@interfaces/product": ["src/app/interfaces/product.ts"],
+      "@service/product": ["src/app/components/product/product.service.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
