@@ -3,15 +3,12 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
-import {SideNavComponent} from "./components/shared/side-nav/side-nav.component";
-import {HomeComponent} from "./components/home/home.component";
-import {HeaderComponent} from "./components/shared/header/header.component";
-import {ProductModule} from "./components/product/product.module";
-import {RegisterProductComponent} from "./components/product/register/register-product.component";
-import {ProductListComponent} from "./components/product/list/product-list.component";
+import {HomeComponent} from "@components/home";
+import {ProductModule} from "@components/product/module";
+import {ProductListComponent} from "@components/product/list";
 import {SharedModule} from "./components/shared/shared.module";
+import {RegisterProductComponent} from "@components/product/register";
 
 
 

@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
-import {Product} from "../../interfaces";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {catchError, Observable, tap} from "rxjs";
 import {FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {Product} from "@interfaces/product";
 
 @Injectable()
 export class ProductService {
