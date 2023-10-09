@@ -4,11 +4,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import {HomeComponent} from "@components/home";
-import {ProductModule} from "@components/product/module";
-import {ProductListComponent} from "@components/product/list";
-import {SharedModule} from "./components/shared/shared.module";
-import {RegisterProductComponent} from "@components/product/register";
+import {HomeComponent} from "@components/home/home.component";
+import {ProductModule} from "@components/product/product.module";
+import {ProductListComponent} from "@components/product/list/product-list.component";
+import {SharedModule} from "@components/shared/shared.module";
+import {RegisterProductComponent} from "@components/product/register/register-product.component";
 
 
 
