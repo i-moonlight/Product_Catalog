@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask';
 
-import { ProductListComponent } from "./list/product-list.component";
+import { ProductListComponent } from "@components/product/list";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ProductCardComponent } from './product-card/product-card.component';
-import {RegisterProductComponent} from "./register/register-product.component";
+import { ProductCardComponent } from '@components/product/card';
+import {RegisterProductComponent} from "@components/product/register";
 import {SharedModule} from "../shared/shared.module";
-import {ProductService} from "./product.service";
+import {ProductService} from "@service/product";
 
 @NgModule({
   declarations: [

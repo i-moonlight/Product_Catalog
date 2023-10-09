@@ -1,8 +1,8 @@
 import {Component, Inject, OnDestroy} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Product} from "../../../interfaces";
-import {ProductService} from "../product.service";
-import {Subject, Subscription, takeUntil} from "rxjs";
+import {ProductService} from "@service/product";
+import {Subject, takeUntil} from "rxjs";
+import {Product} from "@interfaces/product";
 
 
 @Component({
