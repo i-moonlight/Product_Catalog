@@ -38,14 +38,7 @@ export class ProductService {
         { observe: 'response' })
   }
   public postProduct(formData: FormGroup){
-    this._http.post<Product>(this._baseUrl + 'product',
+    return this._http.post<Product>(this._baseUrl + 'product',
       formData, {observe: 'response'})
-      .pipe(
-        tap(response =>
-          this._router.navigate(['/product-list'])),
-        catchError((error): any  => {
-          alert(error.error);
-        })
-      ).subscribe()
   }
 }
