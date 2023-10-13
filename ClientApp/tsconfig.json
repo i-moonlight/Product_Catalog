@@ -33,6 +33,12 @@
       "@enums/*": [
         "./src/app/enums/*"
       ],
+      "@util/*": [
+        "./src/app/util/*",
+      ],
+      "@assets/*": [
+        "./src/assets/*",
+      ]
     },
     "useDefineForClassFields": false,
 
