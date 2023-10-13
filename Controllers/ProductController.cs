@@ -60,7 +60,8 @@ public sealed class ProductController : ControllerBase
                 .Any(p => p.Name.ToLower().Trim() == productModel.Name.ToLower().Trim()))
         {
             _logger.LogError("O produto já existe.");
-            return BadRequest("O produto já existe.");
+            return BadRequest($"O produto '{productModel.Name}' já existe, por favor digite um nome válido.");
+
         }
         
         var product = new Product()
