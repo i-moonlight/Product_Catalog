@@ -31,7 +31,8 @@
               ],
             "styles": [
               "src/styles.css",
-              "../ClientApp/src/assets/lib/bootstrap/css/bootstrap.min.css"
+              "../ClientApp/src/assets/lib/bootstrap/css/bootstrap.min.css",
+              "../ClientApp/src/assets/lib/animate.css-4.1.1/animate.min.css"
             ],
             "scripts": [
               "../ClientApp/src/assets/lib/bootstrap/js/bootstrap.min.js"
