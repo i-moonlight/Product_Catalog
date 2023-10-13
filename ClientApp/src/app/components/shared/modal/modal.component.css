@@ -1,0 +1,17 @@
+.modal-laptop{
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  left: 15.5rem;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-tablet{
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  left: 3.75rem;
+  background: rgba(0,0,0,0.5);
+}
