@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output, OnInit, HostListener} from '@angular/core';
 import {ScreenDimensionsEnum} from "@enums/screen-dimensions";
+import {identifyDeviceType} from "@util/getDimensionsUtil";
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,8 @@ export class HeaderComponent implements OnInit {
   //properties
   public menuStatus: boolean = true;
   public screenWidth: number = 0;
+  public deviceType!: Array<{ deviceType: string; isEnable: boolean }>;
+
 
   //Event Emitters
   @Output() sideNavToggled: EventEmitter<boolean> = new EventEmitter<boolean>(true);
@@ -32,9 +35,18 @@ export class HeaderComponent implements OnInit {
   onResize(): void{
     //innerWidth returns the width of the window's layout viewport
     this.screenWidth = window.innerWidth;
-    if(this.screenWidth <= ScreenDimensionsEnum.tablet)
-      this.sideNavToggled.emit(false);
-    else if(this.screenWidth > ScreenDimensionsEnum.laptop)
-      this.sideNavToggled.emit(true);
+    this.deviceType = identifyDeviceType(this.screenWidth);
+    this.checkIfOpenMenu(this.deviceType);
+  }
+
+  public checkIfOpenMenu(deviceType: {deviceType: string, isEnable: boolean}[]): any {
+    if(deviceType[0].isEnable) {
+      this.menuStatus = false;
+      this.sideNavToggled.emit(this.menuStatus)
+    }
+    else if(deviceType[1].isEnable){
+      this.menuStatus = true;
+      this.sideNavToggled.emit(this.menuStatus);
+    }
   }
 }
