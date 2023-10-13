@@ -64,15 +64,18 @@
       <label for="inputImageRef" class="form-label">Url da imagem do produto</label>
       <input formControlName="imageRef" type="text" class="form-control" id="inputImageRef">
       <div id="ImageRefHelp" class="form-text hint-font-size">Digite a url da imagem do produto</div>
-<!--      <div *ngIf="myForm.get('productImageUrl')?.errors?.required && myForm.get('quantity')?.touched" class="alert alert-danger">-->
-<!--        Quantidade é obrigatória-->
-<!--      </div>-->
-<!--      <div *ngIf="myForm.get('quantity')?.errors?.min && myForm.get('quantity')?.touched" class="alert alert-danger">-->
-<!--        Quantidade deve ser maior que 0-->
-<!--      </div>-->
     </div>
-    <div>
-      <button type="submit" class="btn btn-primary w-100 mt-3">Enviar</button>
-    </div>
+    <br/>
+    <button [disabled]="!myForm.valid" type="submit" class="btn btn-primary w-100 mt-3">Enviar</button>
+
+
   </form>
+
+
+  <app-modal (modal)=" isModalOpen = $event; " *ngIf="isModalOpen "
+             [childModalContent]="parentModalContent" >
+  </app-modal>
+
+
 </div>
+
