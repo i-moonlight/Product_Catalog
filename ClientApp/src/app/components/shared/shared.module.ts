@@ -4,11 +4,13 @@ import {HeaderComponent} from "@components/shared/header/header.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import {SideNavComponent} from "@shared/side-nav/side-nav.component";
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     SideNavComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import {SideNavComponent} from "@shared/side-nav/side-nav.component";
   ],
   exports: [
     SideNavComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent
   ]
 })
 export class SharedModule { }
