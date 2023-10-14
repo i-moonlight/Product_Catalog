@@ -16,7 +16,8 @@ export function identifyDeviceType(innerWidth: number): Array<{ deviceType: stri
     deviceType[0].isEnable = true;
     deviceType[1].isEnable = false;
   }
-  else if(screenWidth >= ScreenDimensionsEnum.laptop){
+  else if(screenWidth > ScreenDimensionsEnum.tablet &&
+    screenWidth >= ScreenDimensionsEnum.laptop){
     deviceType[0].isEnable = false;
     deviceType[1].isEnable = true;
   }

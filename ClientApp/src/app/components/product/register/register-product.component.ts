@@ -1,12 +1,12 @@
 import {
   ChangeDetectorRef,
-  Component,
+  Component, OnDestroy,
   OnInit,
   Renderer2
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ProductService} from "@components/product/product.service";
-import {catchError, Subscription, tap} from "rxjs";
+import {catchError, Subject, Subscription, takeUntil, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -16,14 +16,15 @@ import {HttpErrorResponse} from "@angular/common/http";
   templateUrl: './register-product.component.html',
   styleUrls: ['register-product-component.css']
 })
-export class RegisterProductComponent implements OnInit{
+export class RegisterProductComponent implements OnInit, OnDestroy{
 
   //properties
   public parentModalContent!: { title: string; body: string; buttonBackground: string  };
   private _router: Router;
   public isModalOpen: boolean = false;
   public screenWidth: number = 0;
-  public formValueChangeSubscription! :Subscription;
+  private notifier = new Subject()
+
 
   myForm: FormGroup = this.fb.group({});
   constructor(private fb: FormBuilder,
@@ -62,6 +63,7 @@ export class RegisterProductComponent implements OnInit{
         .pipe(
           tap(response =>
             this._router.navigate(['/product-list'])),
+          takeUntil(this.notifier),
           catchError((httpErrorResponse: HttpErrorResponse): any  => {
             this.openModal(httpErrorResponse);
           })
@@ -72,6 +74,11 @@ export class RegisterProductComponent implements OnInit{
     this.parentModalContent = {'title': 'Erro', 'body': httpErrorResponse.error, buttonBackground: 'btn-danger btn'}
     this.isModalOpen = true;
     this.changeDetector.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.notifier.next(1);
+    this.notifier.complete();
   }
 
 }

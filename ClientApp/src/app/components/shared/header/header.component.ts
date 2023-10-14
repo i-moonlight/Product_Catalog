@@ -10,7 +10,7 @@ import {identifyDeviceType} from "@util/getDimensionsUtil";
 export class HeaderComponent implements OnInit {
 
   //properties
-  public menuStatus: boolean = true;
+  public menuStatus!: boolean;
   public screenWidth: number = 0;
   public deviceType!: Array<{ deviceType: string; isEnable: boolean }>;
 
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   //hooks
   ngOnInit(): void {
     //setting sidenav initial state to open
-    this.sideNavToggled.emit(this.menuStatus);
+    this.onResize();
   }
 
   //methods

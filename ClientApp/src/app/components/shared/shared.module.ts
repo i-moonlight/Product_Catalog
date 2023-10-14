@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import {SideNavComponent} from "@shared/side-nav/side-nav.component";
 import { ModalComponent } from './modal/modal.component';
+import {SidenavService} from "@shared/side-nav/sidenav.service";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { ModalComponent } from './modal/modal.component';
     SideNavComponent,
     HeaderComponent,
     ModalComponent
+  ],
+  providers: [
+    SidenavService
   ]
 })
 export class SharedModule { }
