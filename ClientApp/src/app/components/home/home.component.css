@@ -5,8 +5,6 @@
   margin-left: -15px;
   justify-content: center;
   padding: 3rem;
-  min-width: 22.5rem !important;
-
 }
 
 :host > div:nth-child(1) {

@@ -6,7 +6,6 @@
   align-items: flex-start;
   overflow-y: scroll;
   height: 100%;
-  min-width: 22.5rem !important;
 }
 
 :host > div:nth-child(1) {

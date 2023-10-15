@@ -4,7 +4,6 @@
   overflow-y: scroll;
   height: calc(100vh - 6rem);
   justify-content: center;
-  min-width: 22.5rem !important;
 }
 .hint-font-size{
   font-size: var(--hint-font-size, 12px);
