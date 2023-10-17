@@ -3,12 +3,14 @@
   flex-flow: row wrap;
   justify-content: space-evenly;
   padding: 1rem !important;
+  min-width: 9.875rem !important;
 }
 
 .card {
   min-width: 17.875rem;
   min-height: 22.5rem;
   margin-bottom: 1rem;
+  max-height: 26rem;
 }
 
   .card-img-top {
@@ -19,10 +21,17 @@
     min-height: 11.25rem;
   }
 
-@media screen and (min-width: 380px) and (max-width: 575px) {
+@media screen and (min-width: 150px) and (max-width: 400px) {
   .card {
     max-width: 17.875rem;
-    min-width: 17.875rem;
+    min-width: 9.875rem !important;
     min-height: 22.5rem;
+    max-height: 26rem;
+    font-size: .75rem;
   }
+
+  h5.card-title {
+    font-size: 1rem;
+  }
+
 }

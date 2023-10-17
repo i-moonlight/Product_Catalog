@@ -14,6 +14,8 @@ export class ProductListComponent implements OnDestroy {
 
   //properties
   public searchInputPlhdr: string = "Digite o nome do produto";
+  public screenWidth: number = 0;
+  public deviceType!: Array<{ deviceType: string; isEnable: boolean }>;
   public products: Product[] = [];
   public pageIndex = 1;
   public totalPages: number = 1;
@@ -23,8 +25,7 @@ export class ProductListComponent implements OnDestroy {
   private notifier = new Subject()
   constructor(http: HttpClient,
               @Inject('BASE_URL') baseUrl: string,
-              private productService: ProductService,
-  ) {
+              private productService: ProductService) {
     this._http = http;
     this._baseUrl = baseUrl;
   }
@@ -69,7 +70,6 @@ export class ProductListComponent implements OnDestroy {
       });
 
   }
-
 
   ngOnDestroy(): void {
     this.notifier.next(1);
