@@ -15,3 +15,12 @@
   border-radius: 25px;
   min-width: 22.625rem;
 }
+
+
+
+@media screen and (min-width: 150px) and (max-width: 575px) {
+  .style-form-register {
+    min-width: 12.938rem;
+  }
+
+}
