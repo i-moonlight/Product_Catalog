@@ -13,3 +13,28 @@
   border-radius: 2rem;
   padding: 2rem;
 }
+
+@media (min-width: 150px) and (max-width: 500px){
+
+  h3.header {
+    font-size: 1.5rem;
+  }
+
+  h5.card-title {
+    font-size: 1rem;
+  }
+
+  :host > div:nth-child(1) > div:nth-child(1) {
+    padding: 0;
+  }
+
+  :host > div:nth-child(1) > div:nth-child(2) {
+    min-width: 9.875rem !important;
+  }
+
+  :host > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
