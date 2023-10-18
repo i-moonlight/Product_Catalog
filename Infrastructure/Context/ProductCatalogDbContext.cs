@@ -8,7 +8,7 @@ public class ProductCatalogDbContext: DbContext
     public ProductCatalogDbContext(DbContextOptions<ProductCatalogDbContext> options) : base(options)
     {}
     
-    public DbSet<Product> Products { get; set; }
+    public DbSet<Product>? Products { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
