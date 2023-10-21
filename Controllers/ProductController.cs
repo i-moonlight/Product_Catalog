@@ -1,5 +1,5 @@
+using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ProductCatalog.Entities;
 using ProductCatalog.Enums;
 using ProductCatalog.Models;
@@ -10,54 +10,53 @@ namespace ProductCatalog.Controllers;
 [Route("[controller]")]
 public sealed class ProductController : ControllerBase
 {
-    private readonly ProductCatalogDbContext _context;
     private readonly ILogger<ProductController> _logger;
+    private readonly IProductRepository _productRepository;
     private const int PageSize = 9;
     
     public ProductController(
-        ProductCatalogDbContext context, 
-        ILogger<ProductController> logger)
-    {
-        _context = context;
+        ILogger<ProductController> logger,
+        IProductRepository productRepository)
+    { 
         _logger = logger;
+        _productRepository = productRepository;
     }
     
     [HttpGet]
-    public async Task<IActionResult> Get(int pageIndex)
+    public Task<IActionResult> Get(int pageIndex)
     {
-        var total = await _context.Products.CountAsync();
-        var totalPages = (int)Math.Ceiling(total / (double)PageSize);
+        var totalCount = _productRepository.GetAllAsync().Result.Count;
+        var products = _productRepository.GetAllAsync().Result;
+        var totalPages = (int)Math.Ceiling(totalCount / (double)PageSize);
         HttpContext.Response.Headers.Add("totalPages",totalPages.ToString());
-        
-        var products = await _context.Products
-            .OrderBy(p => p.CreatedAt)
-            .Skip((pageIndex - 1) * PageSize)
-            .Take(PageSize)
-            .ToListAsync();
+        HttpContext.Response.Headers.Add("totalCount",totalCount.ToString());
+
+
+
+        var paginatedList =  _productRepository
+            .GetAllProducts(pageIndex,PageSize);
         
         _logger.LogInformation("Produtos retornados com sucesso.");
-        return Ok(products);
+        return Task.FromResult<IActionResult>(Ok(paginatedList.Result));
     }
 
     [HttpGet("byName")]
-    public async Task<IActionResult> GetByName()
+    public Task<IActionResult> GetByName()
     {
         //check if there is a querystring named 'productName'
         Request.Query.TryGetValue("productName", out var productName);
         
-        var filteredProductsByName = await _context.Products
-            .Where(p => p.Name.ToLower().Trim().Contains(productName.ToString().ToLower().Trim()))
-            .ToListAsync();
+        var filteredProductsByName = _productRepository
+            .GetProductsByName(productName.ToString());
                 
         _logger.LogInformation("Produtos filtrados por nome.");
-        return Ok(filteredProductsByName);
+        return Task.FromResult<IActionResult>(Ok(filteredProductsByName));
     }
     
     [HttpPost]
     public IActionResult Post(ProductModel productModel)
     {
-        if (_context.Products
-                .Any(p => p.Name.ToLower().Trim() == productModel.Name.ToLower().Trim()))
+        if (_productRepository.CheckNameExistence(productModel.Name).Result)
         {
             _logger.LogError("O produto já existe.");
             return BadRequest($"O produto '{productModel.Name}' já existe, por favor digite um nome válido.");
@@ -75,9 +74,9 @@ public sealed class ProductController : ControllerBase
             CreatedAt = DateTimeOffset.Now.ToUniversalTime()
         };
         
-        _context.Products.Add(product);
-        _context.SaveChanges();
+        _productRepository.AddAsync(product);
         _logger.LogInformation("Produto criado com sucesso.");
         return CreatedAtAction(nameof(Get), new { id = product.Id }, productModel);
     }
+
 }
