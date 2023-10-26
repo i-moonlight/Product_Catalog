@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ProductService} from "@components/product/product.service";
-import {catchError, Subject, Subscription, takeUntil, tap} from "rxjs";
+import {catchError, Subject, takeUntil, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-
+import {moneyMask} from "@components/product/register/helpers/format-currency-helper";
 
 @Component({
   selector: 'app-register-product',
@@ -24,7 +24,8 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
   public isModalOpen: boolean = false;
   public screenWidth: number = 0;
   private notifier = new Subject()
-
+  public priceInputPlaceholder: string = "R$ 0,00";
+  protected readonly moneyMask = moneyMask;
 
   myForm: FormGroup = this.fb.group({});
   constructor(private fb: FormBuilder,
@@ -39,7 +40,6 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
 
   //hooks
   ngOnInit() {
-
     this.myForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', [Validators.required, Validators.min(1)]],
@@ -57,7 +57,15 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
   ];
 
   //methods
+  private formatPriceAsNumber(price: string): number {
+    const priceWithoutNonNumericCharacters = price.replace(/\D/g, '');
+    return parseFloat(priceWithoutNonNumericCharacters)/100;
+  }
   public submit() {
+    const price = this.myForm.controls.price.value;
+    const priceAsNumber = this.formatPriceAsNumber(price);
+    this.myForm.controls.price.setValue(priceAsNumber);
+
     this.productService
         .postProduct(this.myForm.value)
         .pipe(
@@ -80,5 +88,4 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
     this.notifier.next(1);
     this.notifier.complete();
   }
-
 }
