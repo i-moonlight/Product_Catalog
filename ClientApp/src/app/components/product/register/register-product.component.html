@@ -16,7 +16,7 @@
     </div>
     <div class="mb-3">
       <label for="price" class="form-label">Preço</label>
-      <input prefix="R$ " mask="00.00 || 000.00 || 0000.00" formControlName="price" type="text" class="form-control" id="price">
+      <input [placeholder]="priceInputPlaceholder" (input)=" price.value = moneyMask(price.value)"  #price formControlName="price" type="text" class="form-control" id="price">
       <div id="PriceHelp" class="form-text hint-font-size">Digite o preço do produto</div>
       <div *ngIf="myForm.get('price')?.errors?.required && myForm.get('price')?.touched" class="alert alert-danger">
         Preço é obrigatório
@@ -42,12 +42,12 @@
       <label for="textAreaDescription" class="form-label">Descrição</label>
       <textarea formControlName="description" class="form-control" id="textAreaDescription" rows="3"></textarea>
       <div id="DescriptionHelp" class="form-text hint-font-size">Digite a descrição do produto</div>
-      <div *ngIf="myForm.get('description')?.errors?.required && myForm.get('description')?.touched" class="alert alert-danger">
-        Descrição é obrigatória
-      </div>
-      <div *ngIf="myForm.get('description')?.errors?.minlength && myForm.get('description')?.touched" class="alert alert-danger">
-        Descrição deve ter no mínimo 25 caracteres
-      </div>
+<!--      <div *ngIf="myForm.get('description')?.errors?.required && myForm.get('description')?.touched" class="alert alert-danger">-->
+<!--        Descrição é obrigatória-->
+<!--      </div>-->
+<!--      <div *ngIf="myForm.get('description')?.errors?.minlength && myForm.get('description')?.touched" class="alert alert-danger">-->
+<!--        Descrição deve ter no mínimo 25 caracteres-->
+<!--      </div>-->
     </div>
     <div class="mb-3">
       <label for="inputQuantity" class="form-label">Quantidade</label>
