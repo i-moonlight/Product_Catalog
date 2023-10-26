@@ -28,12 +28,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T: class
                     );
     }
 
-    public async Task<List<T>> GetAllAsync()
+    public IQueryable<T> GetAllAsync()
     {
-        return await _context
-                .Set<T>()
-                .AsNoTracking()
-                .ToListAsync();
+        return _context
+            .Set<T>()
+            .AsNoTracking();
     }
 
     public async Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate)

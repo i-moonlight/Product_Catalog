@@ -1,5 +1,6 @@
 using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductCatalog.Entities;
 using ProductCatalog.Enums;
 using ProductCatalog.Models;
@@ -25,8 +26,7 @@ public sealed class ProductController : ControllerBase
     [HttpGet]
     public Task<IActionResult> Get(int pageIndex)
     {
-        var totalCount = _productRepository.GetAllAsync().Result.Count;
-        var products = _productRepository.GetAllAsync().Result;
+        var totalCount = _productRepository.GetAllProducts().Result.Count;
         var totalPages = (int)Math.Ceiling(totalCount / (double)PageSize);
         HttpContext.Response.Headers.Add("totalPages",totalPages.ToString());
         HttpContext.Response.Headers.Add("totalCount",totalCount.ToString());
@@ -34,7 +34,7 @@ public sealed class ProductController : ControllerBase
 
 
         var paginatedList =  _productRepository
-            .GetAllProducts(pageIndex,PageSize);
+            .GetAllPaginatedProducts(pageIndex,PageSize);
         
         _logger.LogInformation("Produtos retornados com sucesso.");
         return Task.FromResult<IActionResult>(Ok(paginatedList.Result));

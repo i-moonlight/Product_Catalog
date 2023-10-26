@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using ProductCatalog;
@@ -25,19 +21,20 @@ public sealed class ProductRepository : GenericRepository<Product>, IProductRepo
         return GetByIdAsync(id).Result;
     }
 
-    public Task<List<Product>> GetAllProducts(int pageIndex, int pageSize)
+    public Task<List<Product>> GetAllPaginatedProducts(int pageIndex, int pageSize)
     {
-        return _context.Products!
-                .AsNoTracking()
-                .OrderBy(p => p.CreatedAt)
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+        return GetAllAsync()
+            .OrderBy(p => p.CreatedAt)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
     }
-
-    public List<Product> GetAllProducts()
+    
+    public Task<List<Product>> GetAllProducts()
     {
-        return GetAllAsync().Result;
+        return GetAllAsync()
+            .ToListAsync();
+
     }
 
     public List<Product> GetProductsByName(string name)
