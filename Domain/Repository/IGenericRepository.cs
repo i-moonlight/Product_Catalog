@@ -8,7 +8,7 @@ namespace Domain.Repository;
 public interface IGenericRepository<T> where T : class
 {
     Task<ValueTask<T?>> GetByIdAsync(int id);
-    Task<List<T>> GetAllAsync();
+    IQueryable<T> GetAllAsync();
     Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate);
     void AddAsync(T entity);
     void AddRangeAsync(IEnumerable<T> entities);
