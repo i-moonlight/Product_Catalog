@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { NgxMaskModule } from 'ngx-mask';
 
 import { ProductListComponent } from "@components/product/list/product-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -19,7 +18,6 @@ import {ProductService} from "./product.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
     NgOptimizedImage,
     SharedModule,
     FormsModule
