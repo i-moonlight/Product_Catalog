@@ -66,7 +66,7 @@ public sealed class ProductController : ControllerBase
         var product = new Product()
         {
             Name = productModel.Name,
-            Quantity = productModel.Quantity,
+            QuantityInStock = productModel.QuantityInStock,
             Type = Enum.Parse<ProductTypeEnum>(productModel.Type),
             Price = productModel.Price,
             Description = productModel.Description,

@@ -8,7 +8,7 @@ public class ProductModel
 {
     public required string Name { get; set; }
     [Required]
-    public int Quantity { get; set; }
+    public int QuantityInStock { get; set; }
     [Required]
     public string Type { get; set; } = null!;
     [Required]

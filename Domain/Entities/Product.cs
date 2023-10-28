@@ -13,7 +13,7 @@ public class Product
     public required string Name { get; set; }
     [Required]
     [Range(1,1000)]
-    public int Quantity { get; set; }
+    public int QuantityInStock { get; set; }
     public ProductTypeEnum Type { get; set; }
     [Required]
     [Column(TypeName = "decimal(18,2)")]
