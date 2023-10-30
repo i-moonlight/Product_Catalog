@@ -1,8 +1,9 @@
 using System.Collections.ObjectModel;
+using Domain.Entities;
+using Domain.Enums;
 using FakerOfData;
+using Infrastructure.Context;
 using Microsoft.VisualBasic;
-using ProductCatalog.Entities;
-using ProductCatalog.Enums;
 
 namespace ProductCatalog;
 
@@ -61,7 +62,7 @@ public static class Seeder
                 Description = Lorem.Ipsum(7, true),
                 CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
                 Price =  new decimal(rand.Next(10, 250)),
-                Quantity = rand.Next(1, 100),
+                QuantityInStock = rand.Next(1, 100),
                 Type = Enumerable.Range(0,2)
                     .Select(x => (ProductTypeEnum)x)
                     .OrderBy(x => Guid.NewGuid())
