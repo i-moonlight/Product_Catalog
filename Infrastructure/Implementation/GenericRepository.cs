@@ -4,9 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Domain.Repository;
+using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using ProductCatalog;
-using ProductCatalog.Entities;
 
 namespace Infrastructure.Implementation;
 

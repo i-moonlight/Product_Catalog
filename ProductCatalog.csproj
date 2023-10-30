@@ -40,6 +40,12 @@
         <None Remove="ClientApp\src\app\components\shared\shared\**" />
         <Content Remove="ClientApp\src\app\components\shared\search-input\**" />
         <None Remove="ClientApp\src\app\components\shared\search-input\**" />
+        <Content Remove="Infrastructure\obj\**" />
+        <None Remove="Infrastructure\obj\**" />
+        <Content Remove="Domain\**" />
+        <None Remove="Domain\**" />
+        <Content Remove="Infrastructure\**" />
+        <None Remove="Infrastructure\**" />
     </ItemGroup>
 
 
@@ -57,6 +63,9 @@
       <Compile Remove="ClientApp\assets\**" />
       <Compile Remove="ClientApp\src\app\components\shared\shared\**" />
       <Compile Remove="ClientApp\src\app\components\shared\search-input\**" />
+      <Compile Remove="Infrastructure\obj\**" />
+      <Compile Remove="Domain\**" />
+      <Compile Remove="Infrastructure\**" />
     </ItemGroup>
 
 
@@ -68,6 +77,28 @@
       <EmbeddedResource Remove="ClientApp\assets\**" />
       <EmbeddedResource Remove="ClientApp\src\app\components\shared\shared\**" />
       <EmbeddedResource Remove="ClientApp\src\app\components\shared\search-input\**" />
+      <EmbeddedResource Remove="Infrastructure\obj\**" />
+      <EmbeddedResource Remove="Domain\**" />
+      <EmbeddedResource Remove="Infrastructure\**" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Infrastructure\obj\Infrastructure.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Infrastructure\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Infrastructure\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Domain\bin\Debug\net7.0\Domain.deps.json" />
+      <_ContentIncludedByDefault Remove="Domain\obj\Domain.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Domain\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Domain\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Infrastructure\bin\Debug\net7.0\Infrastructure.deps.json" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <ProjectReference Include="Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

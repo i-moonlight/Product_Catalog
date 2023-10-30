@@ -1,4 +1,4 @@
-namespace ProductCatalog.Enums;
+namespace Domain.Enums;
 
 public enum ProductTypeEnum
 {

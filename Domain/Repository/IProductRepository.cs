@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using ProductCatalog.Entities;
+using Domain.Entities;
+
 namespace Domain.Repository;
 
 public interface IProductRepository : IGenericRepository<Product>

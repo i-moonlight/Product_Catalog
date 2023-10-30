@@ -1,7 +1,7 @@
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Entities;
 
-namespace ProductCatalog;
+namespace Infrastructure.Context;
 
 public class ProductCatalogDbContext: DbContext
 {

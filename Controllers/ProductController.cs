@@ -1,8 +1,8 @@
+using Domain.Entities;
+using Domain.Enums;
 using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Entities;
-using ProductCatalog.Enums;
 using ProductCatalog.Models;
 
 namespace ProductCatalog.Controllers;

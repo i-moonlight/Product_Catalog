@@ -1,3 +1,4 @@
+using Infrastructure.Context;
 using ProductCatalog;
 
 var builder = WebApplication.CreateBuilder(args);

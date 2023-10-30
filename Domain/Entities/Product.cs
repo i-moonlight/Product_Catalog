@@ -1,9 +1,8 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ProductCatalog.Enums;
+using Domain.Enums;
 
-namespace ProductCatalog.Entities;
+namespace Domain.Entities;
 
 public class Product
 {

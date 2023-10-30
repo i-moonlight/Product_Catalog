@@ -1,8 +1,8 @@
 using System.Linq.Expressions;
+using Domain.Entities;
 using Domain.Repository;
+using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using ProductCatalog;
-using ProductCatalog.Entities;
 
 namespace Infrastructure.Implementation;
 
