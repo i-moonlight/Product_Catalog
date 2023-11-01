@@ -4,7 +4,7 @@
       <h3>Cadastrar Produto</h3>
     </div>
     <div class="mb-3 justify-content-md-center">
-      <label for="name" class="form-label">Nome</label>
+      <label for="name" class="form-label">Nome *</label>
       <input formControlName="name" type="text" class="form-control" name="name" id="name">
       <div id="NameHelp" class="form-text hint-font-size ">Digite o nome do produto</div>
       <div *ngIf="myForm.get('name')?.errors?.required && myForm.get('name')?.touched" class="alert alert-danger">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="price" class="form-label">Preço</label>
+      <label for="price" class="form-label">Preço *</label>
       <input [placeholder]="priceInputPlaceholder" (input)=" price.value = moneyMask(price.value)"  #price formControlName="price" type="text" class="form-control" id="price">
       <div id="PriceHelp" class="form-text hint-font-size">Digite o preço do produto</div>
       <div *ngIf="myForm.get('price')?.errors?.required && myForm.get('price')?.touched" class="alert alert-danger">
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="inputType" class="form-label">Tipo</label>
+      <label for="inputType" class="form-label">Tipo *</label>
       <br>
       <select formControlName="type" class="form-select col-12 col-sm-12 col-md-12" name="type" id="inputType">
         <option>-- Selecione o tipo de produto --</option>
@@ -42,15 +42,15 @@
       <label for="textAreaDescription" class="form-label">Descrição</label>
       <textarea formControlName="description" class="form-control" id="textAreaDescription" rows="3"></textarea>
       <div id="DescriptionHelp" class="form-text hint-font-size">Digite a descrição do produto</div>
-<!--      <div *ngIf="myForm.get('description')?.errors?.required && myForm.get('description')?.touched" class="alert alert-danger">-->
-<!--        Descrição é obrigatória-->
-<!--      </div>-->
-<!--      <div *ngIf="myForm.get('description')?.errors?.minlength && myForm.get('description')?.touched" class="alert alert-danger">-->
-<!--        Descrição deve ter no mínimo 25 caracteres-->
-<!--      </div>-->
+      <div *ngIf="myForm.get('description')?.errors?.required && myForm.get('description')?.touched" class="alert alert-danger">
+        Descrição é obrigatória
+      </div>
+      <div *ngIf="myForm.get('description')?.errors?.minlength && myForm.get('description')?.touched" class="alert alert-danger">
+        Descrição deve ter no mínimo 25 caracteres
+      </div>
     </div>
     <div class="mb-3">
-      <label for="inputQuantity" class="form-label">Quantidade</label>
+      <label for="inputQuantity" class="form-label">Quantidade *</label>
       <input formControlName="quantity" type="number" class="form-control" id="inputQuantity">
       <div id="QuantityHelp" class="form-text hint-font-size">Digite a quantidade de produtos</div>
       <div *ngIf="myForm.get('quantity')?.errors?.required && myForm.get('quantity')?.touched" class="alert alert-danger">
