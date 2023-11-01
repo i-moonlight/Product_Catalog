@@ -61,7 +61,6 @@ export class ProductListComponent implements OnDestroy {
   }
 
   fetchProductsByName(productName:string) {
-
     this.productService
       .fetchProductsByName(productName)
       .pipe(takeUntil(this.notifier))
