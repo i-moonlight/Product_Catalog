@@ -13,7 +13,8 @@ import {Product} from "@interfaces/product";
 export class ProductListComponent implements OnDestroy {
 
   //properties
-  public searchInputPlhdr: string = "Digite o nome do produto";
+  public searchInputPlaceholder: string = "Digite o nome do produto";
+  public emptyProductsMessage!: string;
   public screenWidth: number = 0;
   public deviceType!: Array<{ deviceType: string; isEnable: boolean }>;
   public products: Product[] = [];
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnDestroy {
   private _baseUrl: string;
   private _http: HttpClient;
   public searchInput: string = '';
+  public hasProducts!: boolean;
   private notifier = new Subject()
   constructor(http: HttpClient,
               @Inject('BASE_URL') baseUrl: string,
@@ -57,6 +59,10 @@ export class ProductListComponent implements OnDestroy {
       .subscribe((data) => {
         this.totalPages = Number(data.headers.get('totalPages'));
         this.products = data.body as Product[];
+        this.products.length > 0 ?
+          this.hasProducts = true :
+          this.hasProducts = false
+          this.emptyProductsMessage = "Não há produtos cadastrados.";
       });
   }
 
@@ -66,6 +72,10 @@ export class ProductListComponent implements OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
         this.products = data.body as Product[];
+        this.products.length > 0 ?
+          this.hasProducts = true :
+          this.hasProducts = false;
+          this.emptyProductsMessage = "Produto não cadastrado.";
       });
 
   }

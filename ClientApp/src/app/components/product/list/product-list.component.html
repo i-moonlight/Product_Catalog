@@ -1,5 +1,5 @@
 
-  <div class="container">
+  <div [ngStyle]="{'height': !products.length ? '100%': ''}" class="container">
 
     <div class="container pt-3">
       <div class="row">
@@ -13,7 +13,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">
         <div class="input-group">
 
-          <input [placeholder]="searchInputPlhdr"
+          <input [placeholder]="searchInputPlaceholder"
                  class="form-control border-end-0 border rounded-pill"
                  type="search"
                  (keydown.enter)="fetchProductsByName(searchInput)"
@@ -29,37 +29,44 @@
       </div>
     </div>
 
-    <div class="row">
-        <app-product-card
-          [products]="products">
-        </app-product-card>
-    </div>
-  </div>
-
-  <div class="container p-3">
-      <div class="row w-100">
-        <nav class="d-flex justify-content-center col-12 p-0" aria-label="Page navigation example">
-          <ul class="pagination justify-content-center my-0">
-            <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
-              <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Anterior</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
-            </li>
-            <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
-              <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Próximo</a>
-            </li>
-          </ul>
-        </nav>
+    <ng-container *ngIf="!hasProducts">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-start mb-4">{{emptyProductsMessage}}</p>
+          </div>
+        </div>
       </div>
-  </div>
+    </ng-container>
 
 
-  <div class="container" *ngIf="!products?.length">
-    <div class="row">
-      <div class="col-md-12">
-        <p class="text-start mb-4">Não há produtos cadastrados.</p>
+    <ng-container *ngIf="products.length > 0">
+      <div class="row">
+          <app-product-card
+            [products]="products">
+          </app-product-card>
       </div>
-    </div>
+    </ng-container>
   </div>
+
+  <ng-container *ngIf="products.length > 0">
+    <div class="container p-3">
+        <div class="row w-100">
+          <nav class="d-flex justify-content-center col-12 p-0" aria-label="Page navigation example">
+            <ul class="pagination justify-content-center my-0">
+              <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
+                <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Anterior</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
+              </li>
+              <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
+                <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Próximo</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+    </div>
+  </ng-container>
+
 
