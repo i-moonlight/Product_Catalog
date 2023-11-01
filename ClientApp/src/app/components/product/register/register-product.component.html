@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="textAreaDescription" class="form-label">Descrição</label>
+      <label for="textAreaDescription" class="form-label">Descrição *</label>
       <textarea formControlName="description" class="form-control" id="textAreaDescription" rows="3"></textarea>
       <div id="DescriptionHelp" class="form-text hint-font-size">Digite a descrição do produto</div>
       <div *ngIf="myForm.get('description')?.errors?.required && myForm.get('description')?.touched" class="alert alert-danger">
