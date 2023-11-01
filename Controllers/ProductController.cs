@@ -44,8 +44,12 @@ public sealed class ProductController : ControllerBase
     public Task<IActionResult> GetByName()
     {
         //check if there is a querystring named 'productName'
-        Request.Query.TryGetValue("productName", out var productName);
-        
+        var productNameExists = Request.Query.TryGetValue("productName", out var productName);
+
+        if (!productNameExists)
+        {
+            return Task.FromResult<IActionResult>(BadRequest("Digite um valor válido para realizar a filtragem."));
+        }
         var filteredProductsByName = _productRepository
             .GetProductsByName(productName.ToString());
                 
