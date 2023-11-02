@@ -45,13 +45,19 @@
           <app-product-card
             [products]="products">
           </app-product-card>
+          <div class="px-4 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <span id="totalProducts">
+                <strong>Total de produtos</strong>: {{totalCount}}
+              </span>
+          </div>
       </div>
+
     </ng-container>
   </div>
 
   <ng-container *ngIf="isProductsListEmpty(products)">
     <div class="container p-3">
-        <div class="row w-100">
+        <div class="row w-100 d-flex">
           <nav class="d-flex justify-content-center col-12 p-0" aria-label="Page navigation example">
             <ul class="pagination justify-content-center my-0">
               <li [ngClass]="pageIndex <= 1 ? 'disabled' : ''" class="page-item">
@@ -59,6 +65,9 @@
               </li>
               <li class="page-item">
                 <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">{{totalPages}}</a>
               </li>
               <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
                 <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Próximo</a>
@@ -68,5 +77,3 @@
         </div>
     </div>
   </ng-container>
-
-

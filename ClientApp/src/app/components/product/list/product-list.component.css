@@ -38,3 +38,10 @@
   }
 }
 
+@media (min-width: 360px) and (max-width: 400px) {
+
+  #totalProducts {
+    font-size: .75rem !important;
+  }
+
+}
