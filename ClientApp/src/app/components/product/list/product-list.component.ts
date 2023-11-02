@@ -50,6 +50,12 @@ export class ProductListComponent implements OnDestroy {
     }
   }
 
+  public isProductsListEmpty(products: Array<Product>): boolean {
+     return !products.length ?
+        this.hasProducts = false :
+        this.hasProducts = true;
+  }
+
 
   fetchProducts(pageIndex:number) {
 
@@ -59,10 +65,8 @@ export class ProductListComponent implements OnDestroy {
       .subscribe((data) => {
         this.totalPages = Number(data.headers.get('totalPages'));
         this.products = data.body as Product[];
-        this.products.length > 0 ?
-          this.hasProducts = true :
-          this.hasProducts = false
-          this.emptyProductsMessage = "Não há produtos cadastrados.";
+        this.isProductsListEmpty(this.products);
+        this.emptyProductsMessage = "Não há produtos cadastrados.";
       });
   }
 
@@ -72,10 +76,8 @@ export class ProductListComponent implements OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
         this.products = data.body as Product[];
-        this.products.length > 0 ?
-          this.hasProducts = true :
-          this.hasProducts = false;
-          this.emptyProductsMessage = "Produto não cadastrado.";
+        this.isProductsListEmpty(this.products);
+        this.emptyProductsMessage = "Produto não cadastrado.";
       });
 
   }

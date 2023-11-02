@@ -40,7 +40,7 @@
     </ng-container>
 
 
-    <ng-container *ngIf="products.length > 0">
+    <ng-container *ngIf="isProductsListEmpty(products)">
       <div class="row">
           <app-product-card
             [products]="products">
@@ -49,7 +49,7 @@
     </ng-container>
   </div>
 
-  <ng-container *ngIf="products.length > 0">
+  <ng-container *ngIf="isProductsListEmpty(products)">
     <div class="container p-3">
         <div class="row w-100">
           <nav class="d-flex justify-content-center col-12 p-0" aria-label="Page navigation example">
