@@ -20,6 +20,7 @@ export class ProductListComponent implements OnDestroy {
   public products: Product[] = [];
   public pageIndex = 1;
   public totalPages: number = 1;
+  public totalCount!: number;
   private _baseUrl: string;
   private _http: HttpClient;
   public searchInput: string = '';
@@ -64,6 +65,7 @@ export class ProductListComponent implements OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
         this.totalPages = Number(data.headers.get('totalPages'));
+        this.totalCount = Number(data.headers.get('totalCount'));
         this.products = data.body as Product[];
         this.isProductsListEmpty(this.products);
         this.emptyProductsMessage = "Não há produtos cadastrados.";
