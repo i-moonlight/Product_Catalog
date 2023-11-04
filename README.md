@@ -10,15 +10,6 @@ Um aplicativo da web de catálogo de produtos desenvolvido com ASP.Net Core, Ang
 - A capacidade de filtrar produtos por nome
 - Design visualmente atraente
 
-### Características:
-
-Tela inicial com mensagem de boas-vindas e instruções
-Paginação
-Registo de produto
-Filtragem de produtos por nome
-Design visualmente atraente
-
-
 ### Tecnologias:
 
 - ASP.Net Core
