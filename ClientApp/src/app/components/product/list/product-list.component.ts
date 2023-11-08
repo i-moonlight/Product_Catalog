@@ -26,6 +26,9 @@ export class ProductListComponent implements OnDestroy {
   public searchInput: string = '';
   public hasProducts!: boolean;
   private notifier = new Subject()
+  public filterValue: string = '';
+  public initialValue!: {label: string, value: string};
+  public selectFilterOption!: {label: string, value: string};
   constructor(http: HttpClient,
               @Inject('BASE_URL') baseUrl: string,
               private productService: ProductService) {
@@ -33,22 +36,40 @@ export class ProductListComponent implements OnDestroy {
     this._baseUrl = baseUrl;
   }
 
+  public filtersList: Array<{ label: string; value: string }> = [
+    {
+      label: 'Maior Valor',
+      value: 'HighestValue'
+    },
+    {
+      label: 'Menor valor',
+      value: 'LowerValue'
+    }
+  ]
+
   ngOnInit() {
-    this.fetchProducts(this.pageIndex);
+    this.filterValue = this.filtersList[1].value;
+    this.fetchProductsByFilterName(this.filterValue, this.pageIndex.toString());
+  }
+
+  public hasFilterName(filterValue: string): void{
+    this.filterValue ?
+      this.fetchProductsByFilterName(filterValue,this.pageIndex.toString()) :
+      this.fetchProducts(this.pageIndex)
   }
 
   public pagePrev(){
     if(this.pageIndex > 1){
       this.pageIndex = this.pageIndex - 1;
-      this.fetchProducts(this.pageIndex);
     }
+    this.hasFilterName(this.filterValue);
   }
 
   public pageNext(){
     if(this.pageIndex < this.totalPages){
       this.pageIndex = this.pageIndex + 1;
-      this.fetchProducts(this.pageIndex);
     }
+    this.hasFilterName(this.filterValue);
   }
 
   public isProductsListEmpty(products: Array<Product>): boolean {
@@ -59,7 +80,7 @@ export class ProductListComponent implements OnDestroy {
 
 
   fetchProducts(pageIndex:number) {
-
+    this.filterValue = '';
     const products = this.productService
       .fetchProducts(pageIndex)
       .pipe(takeUntil(this.notifier))
@@ -77,11 +98,31 @@ export class ProductListComponent implements OnDestroy {
       .fetchProductsByName(productName)
       .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
+        this.totalPages = Number(data.headers.get('totalPages'));
+        this.totalCount = Number(data.headers.get('totalCount'));
         this.products = data.body as Product[];
         this.isProductsListEmpty(this.products);
         this.emptyProductsMessage = "Produto não cadastrado.";
       });
+  }
 
+  makeQuery(filterValue: string, pageIndex: string){
+    let query: string;
+    query = `filterName=${filterValue}&pageIndex=${pageIndex}`;
+    return query;
+  }
+
+  fetchProductsByFilterName(filterValue: string, pageIndex: string){
+    this.productService
+      .fetchProductsByFilterName(this.makeQuery(filterValue, pageIndex))
+      .pipe(takeUntil(this.notifier))
+      .subscribe((data) => {
+        this.totalPages = Number(data.headers.get('totalPages'));
+        this.totalCount = Number(data.headers.get('totalCount'));
+        this.products = data.body as Product[];
+        this.isProductsListEmpty(this.products);
+        this.emptyProductsMessage = "Nenhum produto foi encontrado.";
+      });
   }
 
   ngOnDestroy(): void {
