@@ -3,7 +3,6 @@ using Domain.Entities;
 using Domain.Enums;
 using Domain.Repository;
 using Infrastructure.Context;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Implementation;
@@ -11,7 +10,7 @@ namespace Infrastructure.Implementation;
 public sealed class ProductRepository : GenericRepository<Product>, IProductRepository
 {
     private readonly ProductCatalogDbContext _context;
-    private List<Product> _products;
+    private List<Product> _products = null!;
 
     public ProductRepository(ProductCatalogDbContext context) : base(context)
     {
