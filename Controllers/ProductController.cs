@@ -53,8 +53,38 @@ public sealed class ProductController : ControllerBase
         var filteredProductsByName = _productRepository
             .GetProductsByName(productName.ToString());
                 
+        var totalCount = filteredProductsByName.Count;
+        var totalPages = (int)Math.Ceiling(totalCount / (double)PageSize);
+        HttpContext.Response.Headers.Add("totalPages",totalPages.ToString());
+        HttpContext.Response.Headers.Add("totalCount",totalCount.ToString());
+        
         _logger.LogInformation("Produtos filtrados por nome.");
         return Task.FromResult<IActionResult>(Ok(filteredProductsByName));
+    }
+
+    [HttpGet("filterBy")]
+    public async Task<IActionResult> GetProductsByPrice(int pageIndex)
+    {
+        
+        var totalCount = _productRepository.GetAllProducts().Result.Count;
+        var totalPages = (int)Math.Ceiling(totalCount / (double)PageSize);
+        HttpContext.Response.Headers.Add("totalPages",totalPages.ToString());
+        HttpContext.Response.Headers.Add("totalCount",totalCount.ToString());
+        
+        var filterNameExists = Request.Query
+                .TryGetValue("filterName", out var filterName);
+        
+        if (!filterNameExists)
+        {
+            return await Task.FromResult<IActionResult>(
+                    BadRequest("Opção de filtro não selecionada. Por favor, escolha uma opção.")
+                    );
+        }
+
+        return Ok(_productRepository
+                .GetProductsByFilterName(filterName.ToString(), PageSize, pageIndex));
+
+
     }
     
     [HttpPost]

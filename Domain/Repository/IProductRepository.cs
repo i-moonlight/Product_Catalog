@@ -13,6 +13,7 @@ public interface IProductRepository : IGenericRepository<Product>
      Task<List<Product>> GetAllPaginatedProducts(int pageIndex, int pageSize);
      public Task<List<Product>> GetAllProducts();
      List<Product> GetProductsByName(string name);
+     List<Product> GetProductsByFilterName(string filterName, int pageSize, int pageIndex);
      Task<bool> CheckNameExistence(string name);
      List<Product> GetProductsByCategory(string type);
      List<Product> FindProducts(Expression<Func<Product,bool>> predicate);
