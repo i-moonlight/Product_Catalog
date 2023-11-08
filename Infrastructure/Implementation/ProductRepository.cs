@@ -1,7 +1,9 @@
 using System.Linq.Expressions;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Repository;
 using Infrastructure.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Implementation;
@@ -9,6 +11,7 @@ namespace Infrastructure.Implementation;
 public sealed class ProductRepository : GenericRepository<Product>, IProductRepository
 {
     private readonly ProductCatalogDbContext _context;
+    private List<Product> _products;
 
     public ProductRepository(ProductCatalogDbContext context) : base(context)
     {
@@ -43,6 +46,33 @@ public sealed class ProductRepository : GenericRepository<Product>, IProductRepo
                 .AsNoTracking()
                 .Where(p => p.Name.ToLower().Trim().Contains(name.ToLower().Trim()))
                 .ToListAsync().Result;
+    }
+
+    public List<Product> GetProductsByFilterName(string filterName, int pageSize, int pageIndex )
+    {
+        
+        var query = _context.Products;
+        
+        if (filterName == Enum.GetName(FilterBy.HighestValue))
+        {
+            _products = query!
+                .OrderByDescending(p => p.Price)
+                .AsNoTracking()
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync().Result;
+        }
+        else if (filterName == Enum.GetName(FilterBy.LowerValue))
+        {
+            _products = query!
+                .OrderBy(p => p.Price)
+                .AsNoTracking()
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync().Result;
+        }
+
+        return _products;
     }
 
     public Task<bool> CheckNameExistence(string name)
