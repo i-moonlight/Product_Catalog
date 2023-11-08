@@ -10,7 +10,7 @@
     </div>
 
     <div class="row justify-content-sm-center">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="input-group">
 
           <input [placeholder]="searchInputPlaceholder"
@@ -27,7 +27,21 @@
           </span>
         </div>
       </div>
-    </div>
+      <div class="filter-dropdown-external-wrapper col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="d-flex justify-content-center">
+          <label class="mb-0" for="filterType">Ordenar:</label>
+          <select id="filterType"
+                  [(ngModel)]="filterValue" class="form-select ml-1 filter-dropdown"
+                  (ngModelChange)="fetchProductsByFilterName(filterValue,pageIndex.toString())">
+              <option class="text-center"
+                      *ngFor="let filter of filtersList"
+                      [ngValue]="filter.value"
+              >
+                {{filter.label}}
+              </option>
+          </select>
+        </div>
+      </div>
 
     <ng-container *ngIf="!hasProducts">
       <div class="container">
@@ -46,7 +60,7 @@
             [products]="products">
           </app-product-card>
           <div class="px-4 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <span id="totalProducts">
+              <span id="products-total">
                 <strong>Total de produtos</strong>: {{totalCount}}
               </span>
           </div>
@@ -77,3 +91,4 @@
         </div>
     </div>
   </ng-container>
+</div>

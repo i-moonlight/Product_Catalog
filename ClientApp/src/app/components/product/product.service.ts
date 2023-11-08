@@ -34,9 +34,16 @@ export class ProductService {
 
   public fetchProductsByName(productName:string): Observable<HttpResponse<Product[]>> {
     return this._http
-      .get<Product[]>(this._baseUrl + 'product/byName?productName=' + productName,
+      .get<Product[]>(this._baseUrl + 'product/byName?productName=' + productName ,
         { observe: 'response' })
   }
+
+  public fetchProductsByFilterName(query: string ): Observable<HttpResponse<Product[]>> {
+    return this._http
+      .get<Product[]>(this._baseUrl + `product/filterBy?${query}`,
+        { observe: 'response' })
+  }
+
   public postProduct(formData: FormGroup){
     return this._http.post<Product>(this._baseUrl + 'product',
       formData, {observe: 'response'})

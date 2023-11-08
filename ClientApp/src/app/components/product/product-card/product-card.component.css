@@ -2,7 +2,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  padding: 1rem !important;
   min-width: 9.875rem !important;
 }
 
