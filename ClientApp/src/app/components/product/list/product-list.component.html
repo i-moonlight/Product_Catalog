@@ -69,7 +69,7 @@
 
   <ng-container *ngIf="isProductsListEmpty(products)">
 
-    <div #pagination [ngClass]="{'pagination-position-tablet': deviceType[0].isEnable,
+    <div [ngClass]="{'pagination-position-tablet': deviceType[0].isEnable,
         'pagination-position-laptop': deviceType[1].isEnable}"
       id="pagination-container" class="container p-3 col-12">
       <div class="row w-100 d-flex col-12">
@@ -79,10 +79,7 @@
               <a class="btn page-link rounded-0 rounded-start" tabindex="-1" (click)="pagePrev()">Anterior</a>
             </li>
             <li class="page-item">
-              <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">{{totalPages}}</a>
+              <a class="page-link">{{pageIndex < 1 ? 1 : pageIndex}}/{{totalPages}}</a>
             </li>
             <li [ngClass]="pageIndex < totalPages ? '' : 'disabled'" class="page-item">
               <a class="btn page-link rounded-0 rounded-end" (click)="pageNext()">Próximo</a>
