@@ -57,7 +57,7 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
   ];
 
   //methods
-  private formatPriceAsNumber(price: string): number {
+  public formatPriceAsNumber(price: string): number {
     const priceWithoutNonNumericCharacters = price.replace(/\D/g, '');
     return parseFloat(priceWithoutNonNumericCharacters)/100;
   }

@@ -1,8 +1,15 @@
-import {Component, Inject, OnDestroy} from '@angular/core';
+import {
+  Component,
+  ElementRef, HostListener,
+  Inject,
+  OnDestroy, OnInit,
+} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ProductService} from "@components/product/product.service";
 import {Subject, takeUntil} from "rxjs";
 import {Product} from "@interfaces/product";
+import {identifyDeviceType} from "@util/getDimensionsUtil";
+import {SidenavService} from "@shared/side-nav/sidenav.service";
 
 
 @Component({
@@ -10,11 +17,12 @@ import {Product} from "@interfaces/product";
   templateUrl: './product-list.component.html',
   styleUrls: ['product-list.component.css']
 })
-export class ProductListComponent implements OnDestroy {
+export class ProductListComponent implements OnDestroy, OnInit {
 
   //properties
   public searchInputPlaceholder: string = "Digite o nome do produto";
   public emptyProductsMessage!: string;
+  public sidenavStatus!: boolean;
   public screenWidth: number = 0;
   public deviceType!: Array<{ deviceType: string; isEnable: boolean }>;
   public products: Product[] = [];
@@ -31,10 +39,13 @@ export class ProductListComponent implements OnDestroy {
   public selectFilterOption!: {label: string, value: string};
   constructor(http: HttpClient,
               @Inject('BASE_URL') baseUrl: string,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private _sidenavService: SidenavService
+  ) {
     this._http = http;
     this._baseUrl = baseUrl;
   }
+
 
   public filtersList: Array<{ label: string; value: string }> = [
     {
@@ -48,8 +59,29 @@ export class ProductListComponent implements OnDestroy {
   ]
 
   ngOnInit() {
+    this.getStatusSidenav();
+    this.screenWidth = window.innerWidth;
+    this.deviceType = identifyDeviceType(this.screenWidth);
+
     this.filterValue = this.filtersList[1].value;
     this.fetchProductsByFilterName(this.filterValue, this.pageIndex.toString());
+  }
+
+  public getStatusSidenav(){
+    this._sidenavService
+      .getSidenavStatus$()
+      .subscribe( (sidenavStatus: boolean) => {
+        this.sidenavStatus = sidenavStatus;
+        if(sidenavStatus){
+          this.deviceType[0].isEnable = false;
+          this.deviceType[1].isEnable = true;
+        }
+        else{
+          this.deviceType[0].isEnable = true;
+          this.deviceType[1].isEnable = false;
+        }
+
+      })
   }
 
   public hasFilterName(filterValue: string): void{
@@ -80,7 +112,6 @@ export class ProductListComponent implements OnDestroy {
 
 
   fetchProducts(pageIndex:number) {
-    this.filterValue = '';
     const products = this.productService
       .fetchProducts(pageIndex)
       .pipe(takeUntil(this.notifier))
@@ -123,6 +154,18 @@ export class ProductListComponent implements OnDestroy {
         this.isProductsListEmpty(this.products);
         this.emptyProductsMessage = "Nenhum produto foi encontrado.";
       });
+  }
+
+  //Event listeners
+  @HostListener('window:resize')
+  onResize(){
+    this.screenWidth = window.innerWidth;
+    this.deviceType = identifyDeviceType(this.screenWidth);
+    // if(this.sidenavStatus){
+    //   this.deviceType[0].isEnable = false;
+    //   this.deviceType[1].isEnable = true;
+    // }
+
   }
 
   ngOnDestroy(): void {

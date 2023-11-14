@@ -1,10 +1,13 @@
 <ng-container *ngFor="let product of products">
-  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2
+  <div class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2
       card pt-2 " *ngIf="product.id">
         <img class="card-img-top" src="{{product.imageRef}}" alt="Card image cap">
         <div class="card-body row">
           <h5 class="card-title">{{product.name}}</h5>
           <p class="card-text">{{product.description}}</p>
+          <div class="mb-2 d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
+            <div>{{moneyMask(product.price.toString())}}</div>
+          </div>
           <div class="d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
             <div>Restantes: {{product.quantityInStock}}</div>
           </div>

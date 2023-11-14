@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Product} from "@interfaces/product";
+import {moneyMask} from "@components/product/register/helpers/format-currency-helper";
 
 @Component({
   selector: 'app-product-card',
@@ -10,4 +11,6 @@ export class ProductCardComponent {
 
   //properties
   @Input() products: Product[] = [];
+  protected readonly moneyMask = moneyMask;
+  protected readonly Number = Number;
 }
