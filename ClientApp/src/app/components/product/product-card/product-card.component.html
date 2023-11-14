@@ -5,14 +5,14 @@
         <div class="card-body row">
           <h5 class="card-title">{{product.name}}</h5>
           <p class="card-text">{{product.description}}</p>
-          <div class="mb-2 d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
-            <div>{{moneyMask(product.price.toString())}}</div>
+          <div class="card-price mb-2 d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
+            {{moneyMask(product.price.toString())}}
           </div>
-          <div class="d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
-            <div>Restantes: {{product.quantityInStock}}</div>
+          <div class="card-inStock d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
+            Restantes: {{product.quantityInStock}}
           </div>
-          <div class="d-inline-flex col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
-            <div>Categoria: {{product.type ? 'Orgânico': 'Inorgânico'}}</div>
+          <div class="card-category d-inline-flex col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
+            Categoria: {{product.type ? 'Orgânico': 'Inorgânico'}}
           </div>
         </div>
   </div>

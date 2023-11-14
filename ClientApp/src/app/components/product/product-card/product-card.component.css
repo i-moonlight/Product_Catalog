@@ -12,12 +12,18 @@
   min-height: 22.5rem;
   margin-bottom: 1rem;
   max-height: 30rem;
-}
+}:hover:not(.card-img-top, .card-body,
+  .card-title, .card-text, .card-price, .card-inStock,
+  .card-category){
+   transform: scale(1.05);
+ }
 
   .card-img-top {
     min-height: 11.25rem;
     height: 11.25rem;
-  }
+  }:hover{
+     transform: scale(1);
+   }
 
   .card-body {
     min-height: 11.25rem;
