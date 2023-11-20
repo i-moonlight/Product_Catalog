@@ -6,7 +6,7 @@
           <h5 class="card-title">{{product.name}}</h5>
           <p class="card-text">{{product.description}}</p>
           <div class="card-price mb-2 d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
-            {{moneyMask(product.price.toString())}}
+            {{moneyMask(product.price)}}
           </div>
           <div class="card-inStock d-inline-flex col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
             Restantes: {{product.quantityInStock}}
