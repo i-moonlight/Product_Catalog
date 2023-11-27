@@ -8,12 +8,14 @@ import {RegisterProductComponent} from "@components/product/register/register-pr
 import { ProductCardComponent } from '@components/product/product-card/product-card.component';
 import {SharedModule} from "@shared/shared.module";
 import {ProductService} from "./product.service";
+import { CheckProductTypePipe } from './list/helpers/check-product-type.pipe';
 
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductCardComponent,
-    RegisterProductComponent
+    RegisterProductComponent,
+    CheckProductTypePipe
   ],
   imports: [
     CommonModule,

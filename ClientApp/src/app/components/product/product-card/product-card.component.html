@@ -12,7 +12,7 @@
             Restantes: {{product.quantityInStock}}
           </div>
           <div class="card-category d-inline-flex col-sm-12 col-md-12 col-lg-12 col-xl-12 pl-0">
-            Categoria: {{product.type ? 'Orgânico': 'Inorgânico'}}
+                Categoria: {{product.type.toString() | checkProductType}}
           </div>
         </div>
   </div>

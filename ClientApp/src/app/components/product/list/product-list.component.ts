@@ -10,6 +10,7 @@ import {Subject, takeUntil} from "rxjs";
 import {Product} from "@interfaces/product";
 import {identifyDeviceType} from "@util/getDimensionsUtil";
 import {SidenavService} from "@shared/side-nav/sidenav.service";
+import {orderingItems} from "@components/product/list/helpers/ordering-items";
 
 
 @Component({
@@ -34,7 +35,7 @@ export class ProductListComponent implements OnDestroy, OnInit {
   public searchInput: string = '';
   public hasProducts!: boolean;
   private notifier = new Subject()
-  public filterValue: string = '';
+  public orderingValue: string = '';
   public initialValue!: {label: string, value: string};
   public selectFilterOption!: {label: string, value: string};
   constructor(http: HttpClient,
@@ -47,24 +48,13 @@ export class ProductListComponent implements OnDestroy, OnInit {
   }
 
 
-  public filtersList: Array<{ label: string; value: string }> = [
-    {
-      label: 'Maior Valor',
-      value: 'HighestValue'
-    },
-    {
-      label: 'Menor valor',
-      value: 'LowerValue'
-    }
-  ]
-
   ngOnInit() {
     this.getStatusSidenav();
     this.screenWidth = window.innerWidth;
     this.deviceType = identifyDeviceType(this.screenWidth);
 
-    this.filterValue = this.filtersList[1].value;
-    this.fetchProductsByFilterName(this.filterValue, this.pageIndex.toString());
+    this.orderingValue = orderingItems[1].value;
+    this.fetchProductsByOrderingValue(this.orderingValue, this.pageIndex.toString());
   }
 
   public getStatusSidenav(){
@@ -84,9 +74,9 @@ export class ProductListComponent implements OnDestroy, OnInit {
       })
   }
 
-  public hasFilterName(filterValue: string): void{
-    this.filterValue ?
-      this.fetchProductsByFilterName(filterValue,this.pageIndex.toString()) :
+  public hasOrderingValue(orderingValue: string): void{
+    this.orderingValue ?
+      this.fetchProductsByOrderingValue(orderingValue,this.pageIndex.toString()) :
       this.fetchProducts(this.pageIndex)
   }
 
@@ -94,14 +84,14 @@ export class ProductListComponent implements OnDestroy, OnInit {
     if(this.pageIndex > 1){
       this.pageIndex = this.pageIndex - 1;
     }
-    this.hasFilterName(this.filterValue);
+    this.hasOrderingValue(this.orderingValue);
   }
 
   public pageNext(){
     if(this.pageIndex < this.totalPages){
       this.pageIndex = this.pageIndex + 1;
     }
-    this.hasFilterName(this.filterValue);
+    this.hasOrderingValue(this.orderingValue);
   }
 
   public isProductsListEmpty(products: Array<Product>): boolean {
@@ -137,15 +127,15 @@ export class ProductListComponent implements OnDestroy, OnInit {
       });
   }
 
-  makeQuery(filterValue: string, pageIndex: string){
+  makeQuery(orderingValue: string, pageIndex: string){
     let query: string;
-    query = `filterName=${filterValue}&pageIndex=${pageIndex}`;
+    query = `orderingValue=${orderingValue}&pageIndex=${pageIndex}`;
     return query;
   }
 
-  fetchProductsByFilterName(filterValue: string, pageIndex: string){
+  fetchProductsByOrderingValue(orderingValue: string, pageIndex: string){
     this.productService
-      .fetchProductsByFilterName(this.makeQuery(filterValue, pageIndex))
+      .fetchProductsByOrderingValue(this.makeQuery(orderingValue, pageIndex))
       .pipe(takeUntil(this.notifier))
       .subscribe((data) => {
         this.totalPages = Number(data.headers.get('totalPages'));
@@ -172,4 +162,6 @@ export class ProductListComponent implements OnDestroy, OnInit {
     this.notifier.next(1);
     this.notifier.complete();
   }
+
+  protected readonly orderingItems = orderingItems;
 }
