@@ -47,12 +47,12 @@ public sealed class ProductRepository : GenericRepository<Product>, IProductRepo
                 .ToListAsync().Result;
     }
 
-    public List<Product> GetProductsByFilterName(string filterName, int pageSize, int pageIndex )
+    public List<Product> GetProductsByOrderingValue(string orderingValue, int pageSize, int pageIndex )
     {
         
         var query = _context.Products;
         
-        if (filterName == Enum.GetName(FilterBy.HighestValue))
+        if (orderingValue == Enum.GetName(OrderBy.HighestValue))
         {
             _products = query!
                 .OrderByDescending(p => p.Price)
@@ -61,7 +61,7 @@ public sealed class ProductRepository : GenericRepository<Product>, IProductRepo
                 .Take(pageSize)
                 .ToListAsync().Result;
         }
-        else if (filterName == Enum.GetName(FilterBy.LowerValue))
+        else if (orderingValue == Enum.GetName(OrderBy.LowerValue))
         {
             _products = query!
                 .OrderBy(p => p.Price)

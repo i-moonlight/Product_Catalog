@@ -62,7 +62,7 @@ public sealed class ProductController : ControllerBase
         return Task.FromResult<IActionResult>(Ok(filteredProductsByName));
     }
 
-    [HttpGet("filterBy")]
+    [HttpGet("orderBy")]
     public async Task<IActionResult> GetProductsByPrice(int pageIndex)
     {
         
@@ -72,17 +72,17 @@ public sealed class ProductController : ControllerBase
         HttpContext.Response.Headers.Add("totalCount",totalCount.ToString());
         
         var filterNameExists = Request.Query
-                .TryGetValue("filterName", out var filterName);
+                .TryGetValue("orderingValue", out var orderingValue);
         
         if (!filterNameExists)
         {
             return await Task.FromResult<IActionResult>(
-                    BadRequest("Opção de filtro não selecionada. Por favor, escolha uma opção.")
+                    BadRequest("Opção de ordenação não selecionada. Por favor, escolha uma opção.")
                     );
         }
 
         return Ok(_productRepository
-                .GetProductsByFilterName(filterName.ToString(), PageSize, pageIndex));
+                .GetProductsByOrderingValue(orderingValue.ToString(), PageSize, pageIndex));
 
 
     }
