@@ -38,9 +38,9 @@ export class ProductService {
         { observe: 'response' })
   }
 
-  public fetchProductsByFilterName(query: string ): Observable<HttpResponse<Product[]>> {
+  public fetchProductsByOrderingValue(query: string ): Observable<HttpResponse<Product[]>> {
     return this._http
-      .get<Product[]>(this._baseUrl + `product/filterBy?${query}`,
+      .get<Product[]>(this._baseUrl + `product/orderBy?${query}`,
         { observe: 'response' })
   }
 

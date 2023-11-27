@@ -25,13 +25,13 @@
         <div class="d-flex justify-content-center">
           <label id="order" class="mb-0" for="filterType">Ordenar:</label>
           <select id="filterType"
-                  [(ngModel)]="filterValue" class="form-select ml-1 filter-dropdown"
-                  (ngModelChange)="fetchProductsByFilterName(filterValue,pageIndex.toString())">
+                  [(ngModel)]="orderingValue" class="form-select ml-1 filter-dropdown"
+                  (ngModelChange)="fetchProductsByOrderingValue(orderingValue,pageIndex.toString())">
               <option class="text-center text-shrink "
-                      *ngFor="let filter of filtersList"
-                      [ngValue]="filter.value"
+                      *ngFor="let orderingItem of orderingItems"
+                      [ngValue]="orderingItem.value"
               >
-                {{filter.label}}
+                {{orderingItem.label}}
               </option>
           </select>
         </div>
