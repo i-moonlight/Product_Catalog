@@ -1,6 +1,6 @@
 namespace Domain.Enums;
 
-public enum FilterBy
+public enum OrderBy
 {
     HighestValue = 1,
     LowerValue = 2,

@@ -1,6 +1,6 @@
 import {
   Component,
-  ElementRef, HostListener,
+  HostListener,
   Inject,
   OnDestroy, OnInit,
 } from '@angular/core';
@@ -10,7 +10,7 @@ import {Subject, takeUntil} from "rxjs";
 import {Product} from "@interfaces/product";
 import {identifyDeviceType} from "@util/getDimensionsUtil";
 import {SidenavService} from "@shared/side-nav/sidenav.service";
-import {orderingItems} from "@components/product/list/helpers/ordering-items";
+import {orderingItems} from "@components/product/helpers/ordering-items";
 
 
 @Component({
@@ -151,11 +151,6 @@ export class ProductListComponent implements OnDestroy, OnInit {
   onResize(){
     this.screenWidth = window.innerWidth;
     this.deviceType = identifyDeviceType(this.screenWidth);
-    // if(this.sidenavStatus){
-    //   this.deviceType[0].isEnable = false;
-    //   this.deviceType[1].isEnable = true;
-    // }
-
   }
 
   ngOnDestroy(): void {
