@@ -10,4 +10,8 @@
     <ItemGroup>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Entities\RatingEnum.cs" />
+    </ItemGroup>
+
 </Project>

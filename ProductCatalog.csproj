@@ -46,12 +46,20 @@
         <None Remove="Domain\**" />
         <Content Remove="Infrastructure\**" />
         <None Remove="Infrastructure\**" />
+        <Content Remove="ClientApp\src\assets\lib\animate.css-4.1.1\.github\**" />
+        <None Remove="ClientApp\src\assets\lib\animate.css-4.1.1\.github\**" />
+        <Content Update="ClientApp\src\assets\favicon.ico">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
 
 
 
     <ItemGroup>
       <Folder Include="ClientApp\src\app\enums\" />
+      <Folder Include="ClientApp\src\assets\lib\jquery\" />
+      <Folder Include="wwwroot\" />
     </ItemGroup>
 
 
@@ -66,6 +74,7 @@
       <Compile Remove="Infrastructure\obj\**" />
       <Compile Remove="Domain\**" />
       <Compile Remove="Infrastructure\**" />
+      <Compile Remove="ClientApp\src\assets\lib\animate.css-4.1.1\.github\**" />
     </ItemGroup>
 
 
@@ -80,6 +89,7 @@
       <EmbeddedResource Remove="Infrastructure\obj\**" />
       <EmbeddedResource Remove="Domain\**" />
       <EmbeddedResource Remove="Infrastructure\**" />
+      <EmbeddedResource Remove="ClientApp\src\assets\lib\animate.css-4.1.1\.github\**" />
     </ItemGroup>
 
 

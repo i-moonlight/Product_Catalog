@@ -22,10 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Configurations\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Reference Include="Microsoft.AspNetCore.Mvc.Core">
         <HintPath>..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\7.0.11\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
       </Reference>
