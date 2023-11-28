@@ -2,6 +2,10 @@ nav {
   height: 100%;
 }
 
+a.navbar {
+  text-decoration: none !important;
+}
+
 .side-nav-button {
   display: flex;
   justify-content: center;
@@ -13,4 +17,9 @@ nav {
 .side-nav-button:hover {
   background-color: rgba(255,255,255,0.2);
   border-radius: 30%;
+}
+
+#logo {
+  width: 2rem;
+  height: 2rem;
 }
