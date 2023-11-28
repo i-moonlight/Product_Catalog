@@ -3,7 +3,10 @@
     <i class="fa-solid fa-bars"></i>
   </div>
 
-  <a class="navbar-brand px-4" [routerLink]="['/']">
+  <a class="navbar" [routerLink]="['/']">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img id="logo" ngSrc="./assets/logo-32x32.svg" alt="Catálogo de Produtos" height="43" width="43">
+    </a>
     <span class="text-light">
       Catálogo de Produtos
     </span>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {HeaderComponent} from "@components/shared/header/header.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RouterLink } from "@angular/router";
@@ -13,12 +13,13 @@ import {SidenavService} from "@shared/side-nav/sidenav.service";
     HeaderComponent,
     ModalComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterLink,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterLink,
+        ReactiveFormsModule,
+        NgOptimizedImage
+    ],
   exports: [
     SideNavComponent,
     HeaderComponent,
