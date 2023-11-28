@@ -8,7 +8,7 @@ import {RegisterProductComponent} from "@components/product/register/register-pr
 import { ProductCardComponent } from '@components/product/product-card/product-card.component';
 import {SharedModule} from "@shared/shared.module";
 import {ProductService} from "./product.service";
-import {CheckProductTypePipe} from "@components/product/list/helpers/pipes/check-product-type.pipe";
+import {CheckProductTypePipe} from "@components/product/helpers/pipes/check-product-type.pipe";
 
 @NgModule({
   declarations: [
