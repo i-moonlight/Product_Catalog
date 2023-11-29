@@ -3,7 +3,9 @@ using Domain.Entities;
 using Domain.Enums;
 using FakerOfData;
 using Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using Random = System.Random;
 
 namespace ProductCatalog;
 
@@ -63,7 +65,7 @@ public static class Seeder
                 CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
                 Price =  new decimal(rand.Next(10, 250)),
                 QuantityInStock = rand.Next(1, 100),
-                Type = Enumerable.Range(0,2)
+                Type = Enumerable.Range(0,11)
                     .Select(x => (ProductTypeEnum)x)
                     .OrderBy(x => Guid.NewGuid())
                     .FirstOrDefault(),

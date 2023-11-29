@@ -8,15 +8,15 @@ public class ProductConfiguration: IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.Property(li => li.Price)
+        builder.Property(p => p.Price)
             .HasColumnType("decimal(18,2)");
         
-        builder.Property(o => o.Price).IsRequired();
-        builder.Property(o => o.QuantityInStock).IsRequired();
-        builder.Property(o => o.Type).IsRequired();
-        builder.Property(o => o.Name).IsRequired();
-        builder.Property(o => o.Description).IsRequired();
-        builder.Property(o => o.CreatedAt).IsRequired();
-        builder.Property(o => o.UpdatedAt).IsRequired();
+        builder.Property(p => p.Price).IsRequired();
+        builder.Property(p => p.QuantityInStock).IsRequired();
+        builder.Property(p => p.Type).IsRequired();
+        builder.Property(p => p.Name).IsRequired();
+        builder.Property(p => p.Description).IsRequired();
+        builder.Property(p => p.CreatedAt).IsRequired();
+        builder.Property(p => p.UpdatedAt).IsRequired();
     }
 }
