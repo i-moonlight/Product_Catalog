@@ -6,9 +6,9 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import {HomeComponent} from "@components/home/home.component";
 import {ProductModule} from "@components/product/product.module";
-import {ProductListComponent} from "@components/product/list/product-list.component";
-import {SharedModule} from "@components/shared/shared.module";
+import {SharedModule} from "@shared/shared.module";
 import {RegisterProductComponent} from "@components/product/register/register-product.component";
+import {ProductListComponent} from "@components/product/list/product-list.component";
 
 
 

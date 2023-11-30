@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Product} from "@interfaces/product";
-import {moneyMask} from "@components/product/register/helpers/format-currency-helper";
-import {CheckProductTypePipe} from "@components/product/helpers/pipes/check-product-type.pipe";
+import {moneyMask} from "@components/product/helpers/format-currency-helper";
 
 @Component({
   selector: 'app-product-card',

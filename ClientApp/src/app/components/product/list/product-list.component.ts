@@ -10,7 +10,7 @@ import {Subject, takeUntil} from "rxjs";
 import {Product} from "@interfaces/product";
 import {identifyDeviceType} from "@util/getDimensionsUtil";
 import {SidenavService} from "@shared/side-nav/sidenav.service";
-import {orderingItems} from "@components/product/helpers/ordering-items";
+import {orderingItemsHelper} from "@components/product/list/helpers/ordering-items-helper";
 
 
 @Component({
@@ -53,7 +53,7 @@ export class ProductListComponent implements OnDestroy, OnInit {
     this.screenWidth = window.innerWidth;
     this.deviceType = identifyDeviceType(this.screenWidth);
 
-    this.orderingValue = orderingItems[1].value;
+    this.orderingValue = orderingItemsHelper[1].value;
     this.fetchProductsByOrderingValue(this.orderingValue, this.pageIndex.toString());
   }
 
@@ -158,5 +158,5 @@ export class ProductListComponent implements OnDestroy, OnInit {
     this.notifier.complete();
   }
 
-  protected readonly orderingItems = orderingItems;
+  protected readonly orderingItems = orderingItemsHelper;
 }
