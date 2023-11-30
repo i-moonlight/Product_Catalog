@@ -9,7 +9,8 @@ import {ProductService} from "@components/product/product.service";
 import {catchError, Subject, takeUntil, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {moneyMask} from "@components/product/register/helpers/format-currency-helper";
+import {moneyMask} from "@components/product/helpers/format-currency-helper";
+import {filteringItemsHelper} from "@components/product/helpers/filtering-items-helper";
 
 @Component({
   selector: 'app-register-product',
@@ -45,16 +46,11 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
       price: ['', [Validators.required, Validators.min(1)]],
       quantity: ['', [Validators.required, Validators.min(1)]],
       description: ['', [Validators.required, Validators.minLength(25)]],
-      type: ['-- Selecione o tipo de produto --', [Validators.required]],
+      type: ['-- Selecione a categoria do produto --', [Validators.required]],
       imageRef: ['', ],
     });
   }
 
-
-  public productTypes: Array<{ name: string; value: number }> = [
-    { name: "Orgânico", value: 0},
-    { name: "Inôrganico", value: 1}
-  ];
 
   //methods
   public formatPriceAsNumber(price: string): number {
@@ -88,4 +84,6 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
     this.notifier.next(1);
     this.notifier.complete();
   }
+
+  protected readonly productTypes = filteringItemsHelper;
 }

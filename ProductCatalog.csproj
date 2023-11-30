@@ -57,6 +57,8 @@
 
 
     <ItemGroup>
+      <Folder Include="ClientApp\src\app\components\product\subcomponents\" />
+      <Folder Include="ClientApp\src\app\components\product\subcomponents\product-card\helpers\" />
       <Folder Include="ClientApp\src\app\enums\" />
       <Folder Include="ClientApp\src\assets\lib\jquery\" />
       <Folder Include="wwwroot\" />

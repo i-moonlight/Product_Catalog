@@ -1,4 +1,4 @@
-export const filteringItems: {label: string; value: string}[] = [
+export const filteringItemsHelper: {label: string; value: string}[] = [
   {
     label: 'Relógios',
     value: '0',

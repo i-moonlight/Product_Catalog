@@ -29,9 +29,9 @@
       <label for="inputType" class="form-label">Tipo *</label>
       <br>
       <select formControlName="type" class="form-select col-12 col-sm-12 col-md-12" name="type" id="inputType">
-        <option>-- Selecione o tipo de produto --</option>
+        <option>-- Selecione a categoria do produto --</option>
         <option *ngFor="let productType of productTypes" [value]="productType['value']" >
-          {{productType["name"]}}
+          {{productType["label"]}}
         </option>
       </select>
       <div *ngIf="myForm.get('type')?.errors?.required && myForm.get('type')?.touched" class="alert alert-danger">
