@@ -1,5 +1,6 @@
 using Infrastructure.Context;
 using ProductCatalog;
+using ProductCatalog.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration;
