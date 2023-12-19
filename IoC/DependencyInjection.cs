@@ -4,7 +4,7 @@ using Infrastructure.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
-namespace ProductCatalog;
+namespace ProductCatalog.IoC;
 
 public static class DependencyInjection
 {
@@ -25,12 +25,12 @@ public static class DependencyInjection
     {
         var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
-        // var connectionString = string.IsNullOrEmpty(databaseUrl) ? 
-        //     configuration.GetConnectionString("DefaultConnection")! : 
+        var connectionString = string.IsNullOrEmpty(databaseUrl) ? 
+            configuration.GetConnectionString("DefaultConnection")! : 
+            BuildConnectionStringFromUrl(databaseUrl!);
         
-        return BuildConnectionStringFromUrl(databaseUrl!);
 
-        // return connectionString;
+        return connectionString;
     }
         
     private static string BuildConnectionStringFromUrl(string databaseUrl)
