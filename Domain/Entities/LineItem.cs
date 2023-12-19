@@ -14,7 +14,6 @@ public class LineItem: BaseEntity
     public string? ImageRef { get; init; }
     [MinLength(3)]
     public string Name { get; set; } = null!;
-    public int QuantityInStock { get; set; }
     public ProductTypeEnum Type { get; set; }
     [MinLength(25)]
     public string Description { get; set; } = null!;
