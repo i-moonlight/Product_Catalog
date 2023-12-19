@@ -63,6 +63,7 @@ public static class Seeder
                 Name = "Produto" + rand.Next(1, 1000) ,
                 Description = Lorem.Ipsum(7, true),
                 CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
                 Price =  new decimal(rand.Next(10, 250)),
                 QuantityInStock = rand.Next(1, 100),
                 Type = Enumerable.Range(0,11)
@@ -74,6 +75,292 @@ public static class Seeder
             .ToList();
         
         context.Products!.AddRange(products);
+        context.SaveChanges();
+        
+        //ROLES//
+        if (context.Roles!.Any()) return;
+
+        var roles = new List<Role>()
+        {
+            new Role()
+            {
+                RoleId = RolesEnum.User,
+                Name = Enum.GetName(RolesEnum.User)
+            },
+            new Role()
+            {
+                RoleId = RolesEnum.Admin,
+                Name = Enum.GetName(RolesEnum.Admin)
+            }
+        };
+        
+        
+        context.Roles!.AddRange(roles);
+        context.SaveChanges();
+        
+
+        // //USERS//
+        if (context.Users!.Any()) return;
+        
+        var users = new List<User>()
+        {
+            new()
+            {
+                FirstName = "Eugenio",
+                Lastname = "Lopes",
+                RoleId = context.Roles.Where(r => r.RoleId == RolesEnum.User).Select(r => r.Id).FirstOrDefault(),
+                Email = "eugeniolopes@0001.com",
+                Password = "catalogoProdutos123#",
+                RememberMe = true,
+                ExpiryTime = DateTime.Now.AddDays(30).ToUniversalTime(),
+                RefreshToken = Guid.NewGuid(),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new()
+            {
+                FirstName = "Jõao",
+                Lastname = "Benfica",
+                RoleId = context.Roles.Where(r => r.RoleId == RolesEnum.User).Select(r => r.Id).FirstOrDefault(),
+                Email = "joaobenfica@0000.com",
+                Password = "catalogoProdutos123#",
+                RememberMe = true,
+                ExpiryTime = DateTime.Now.AddDays(30).ToUniversalTime(),
+                RefreshToken = Guid.NewGuid(),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new()
+            {
+                FirstName = "Admin",
+                Lastname = "007",
+                RoleId = context.Roles.Where(r => r.RoleId == RolesEnum.Admin).Select(r => r.Id).FirstOrDefault(),
+                Email = "admin@catalogoprodutos.com",
+                Password = "catalogoProdutos123#",
+                RememberMe = true,
+                ExpiryTime = DateTime.Now.AddDays(30).ToUniversalTime(),
+                RefreshToken = Guid.NewGuid(),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            }
+        };
+        
+        context.Users!.AddRange(users);
+        context.SaveChanges();
+        
+       
+        //ORDERS//
+        if (context.Orders!.Any()) return;
+        
+        var orders = Enumerable.Range(1, 6)
+            .Select(index =>
+            {
+                
+                    return new Order()
+                    {
+                        Status = Enumerable.Range(1, 4)
+                            .Select(x => (OrderStatusEnum)x)
+                            .OrderBy(x => Guid.NewGuid())
+                            .FirstOrDefault(),
+                        UserId = context.Users.Where(u => u.Email == "eugeniolopes@0001.com").Select(x => x.Id).FirstOrDefault(),
+                        DeliveryFee = new decimal(rand.Next(10, 150)),
+                        DeliveryDate = rand.Date(DateTimeOffset.Now)
+                            .ToUniversalTime()
+                            .AddDays(rand.Next(5, 15)),
+                        Total = rand.Next(1, 1000),
+                        CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                        UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime()
+                    };
+                
+            });
+        
+        context.Orders!.AddRange(orders);
+        context.SaveChanges();
+        
+        
+        //LINEITENS
+        if (context.LineItems!.Any()) return;
+
+        var lineItems = new List<LineItem>()
+        {
+            new LineItem()
+            {
+                Name = "Livro" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Books,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Books).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 1).Select(o => o.Id).FirstOrDefault(),
+            },
+            new LineItem()
+            {
+                Name = "Livro" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Books,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Books).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 2).Select(o => o.Id).FirstOrDefault(),
+            },
+            new LineItem()
+            {
+                Name = "Game" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Games,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Games).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 3).Select(o => o.Id).FirstOrDefault(),
+            },
+            new LineItem()
+            {
+                Name = "Game" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Games,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Games).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 4).Select(o => o.Id).FirstOrDefault(),
+            },
+            new LineItem()
+            {
+                Name = "Smartphone" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Smartphones,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Smartphones).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 5).Select(o => o.Id).FirstOrDefault(),
+            },
+            new LineItem()
+            {
+                Name = "Smartphone" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Smartphones,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Smartphones).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 6).Select(o => o.Id).FirstOrDefault(),
+            },
+            new LineItem()
+            {
+                Name = "Computing" + rand.Next(1, 1000),
+                Quantity = rand.Next(1, 15),
+                Description = Lorem.Ipsum(7, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                Price = new decimal(rand.Next(10, 250)),
+                Type = ProductTypeEnum.Computing,
+                ImageRef = ImageRefs[rand.Next(0, ImageRefs.Count - 1)],
+                ProductId = context.Products.Where(p => p.Type == ProductTypeEnum.Computing).Select(p => p.Id)
+                    .FirstOrDefault(),
+                OrderId = context.Orders.Where(o => o.Id == 6).Select(o => o.Id).FirstOrDefault(),
+            }
+
+        };
+        
+        context.LineItems!.AddRange(lineItems);
+        context.SaveChanges();
+        
+        
+        //COMMENTS
+        if (context.Comments!.Any()) return;
+
+        var comments = new List<Comment>()
+        {
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 1).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 1).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 2).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 2).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 1).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 3).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 2).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 2).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 1).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 9).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 2).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 20).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 2).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 15).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            },
+            new Comment()
+            {
+                UserId = context.Users.Where(u => u.Id == 2).Select(u => u.Id).FirstOrDefault(),
+                ProductId = context.Products.Where(p => p.Id == 15).Select(p => p.Id).FirstOrDefault(),
+                Content = Lorem.Ipsum(10, true),
+                CreatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+                UpdatedAt = rand.Date(DateTimeOffset.Now).ToUniversalTime(),
+            }
+        };
+        
+        context.Comments!.AddRange(comments);
         context.SaveChanges();
     }
 }
