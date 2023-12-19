@@ -28,6 +28,10 @@
   .card-body {
     min-height: 11.25rem;
   }
+    .card-price {
+        font-weight: bolder;
+        font-size: 1.125rem;
+    }
 
 @media screen and (min-width: 150px) and (max-width: 400px) {
   .card {
