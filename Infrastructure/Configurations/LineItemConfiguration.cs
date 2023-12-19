@@ -12,7 +12,6 @@ public class LineItemConfiguration: IEntityTypeConfiguration<LineItem>
             .HasColumnType("decimal(18,2)");
         
         builder.Property(li => li.Price).IsRequired();
-        builder.Property(li => li.QuantityInStock).IsRequired();
         builder.Property(li => li.Type).IsRequired();
         builder.Property(li => li.Name).IsRequired();
         builder.Property(li => li.Description).IsRequired();
@@ -26,7 +25,7 @@ public class LineItemConfiguration: IEntityTypeConfiguration<LineItem>
             .OnDelete(DeleteBehavior.Cascade);
         
         builder.HasOne(li => li.Order)
-            .WithMany(li => li.LineItems)
+            .WithMany(o => o.LineItems)
             .HasForeignKey(li => li.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
 
