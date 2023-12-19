@@ -14,6 +14,7 @@
 
     <ItemGroup>
         <PackageReference Include="FakerOfData.Core" Version="0.3.0-rc2" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.10"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
           <PrivateAssets>all</PrivateAssets>
@@ -52,13 +53,17 @@
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
+        <Content Remove="Identity\**" />
+        <None Remove="Identity\**" />
     </ItemGroup>
 
 
 
     <ItemGroup>
+      <Folder Include="ClientApp\src\app\components\product\pipes\" />
       <Folder Include="ClientApp\src\app\components\product\subcomponents\" />
       <Folder Include="ClientApp\src\app\components\product\subcomponents\product-card\helpers\" />
+      <Folder Include="ClientApp\src\app\components\shared\directives\" />
       <Folder Include="ClientApp\src\app\enums\" />
       <Folder Include="ClientApp\src\assets\lib\jquery\" />
       <Folder Include="wwwroot\" />
@@ -77,6 +82,7 @@
       <Compile Remove="Domain\**" />
       <Compile Remove="Infrastructure\**" />
       <Compile Remove="ClientApp\src\assets\lib\animate.css-4.1.1\.github\**" />
+      <Compile Remove="Identity\**" />
     </ItemGroup>
 
 
@@ -92,6 +98,7 @@
       <EmbeddedResource Remove="Domain\**" />
       <EmbeddedResource Remove="Infrastructure\**" />
       <EmbeddedResource Remove="ClientApp\src\assets\lib\animate.css-4.1.1\.github\**" />
+      <EmbeddedResource Remove="Identity\**" />
     </ItemGroup>
 
 
@@ -105,6 +112,9 @@
       <_ContentIncludedByDefault Remove="Domain\obj\project.assets.json" />
       <_ContentIncludedByDefault Remove="Domain\obj\project.packagespec.json" />
       <_ContentIncludedByDefault Remove="Infrastructure\bin\Debug\net7.0\Infrastructure.deps.json" />
+      <_ContentIncludedByDefault Remove="Identity\obj\Identity.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Identity\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Identity\obj\project.packagespec.json" />
     </ItemGroup>
 
 
