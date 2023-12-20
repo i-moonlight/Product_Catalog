@@ -1,9 +1,10 @@
 using Domain.Entities;
+using Infrastructure.Context.Abstraction;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context;
 
-public class ProductCatalogDbContext: DbContext
+public class ProductCatalogDbContext: DbContext, IProductCatalogDbContext
 {
     public ProductCatalogDbContext(DbContextOptions<ProductCatalogDbContext> options) : base(options)
     {}

@@ -1,6 +1,5 @@
-using Domain.Repository;
 using Infrastructure.Context;
-using Infrastructure.Implementation;
+using Infrastructure.Context.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
@@ -10,9 +9,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<ProductCatalogDbContext>();
-        services.AddScoped<IProductRepository,ProductRepository>();
-        
+        services.AddScoped<IProductCatalogDbContext,ProductCatalogDbContext>();
         services.AddDbContext<ProductCatalogDbContext>(
             options => options.UseNpgsql(
                 GetConnectionString(configuration)
