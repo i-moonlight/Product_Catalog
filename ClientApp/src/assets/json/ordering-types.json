@@ -1,0 +1,13 @@
+{
+  "types":
+  [
+    {
+      "label": "Maior Valor",
+      "value": "HighestValue"
+    },
+    {
+      "label": "Menor Valor",
+      "value": "LowerValue"
+    }
+  ]
+}
