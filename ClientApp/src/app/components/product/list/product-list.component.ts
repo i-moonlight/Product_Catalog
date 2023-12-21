@@ -10,7 +10,7 @@ import {Subject, takeUntil} from "rxjs";
 import {Product} from "@interfaces/product";
 import {identifyDeviceType} from "@util/getDimensionsUtil";
 import {SidenavService} from "@shared/side-nav/sidenav.service";
-import {orderingItemsHelper} from "@components/product/list/helpers/ordering-items-helper";
+import ordenation from "@assets/json/ordering-types.json";
 
 
 @Component({
@@ -36,8 +36,9 @@ export class ProductListComponent implements OnDestroy, OnInit {
   public hasProducts!: boolean;
   private notifier = new Subject()
   public orderingValue: string = '';
-  public initialValue!: {label: string, value: string};
   public selectFilterOption!: {label: string, value: string};
+  public readonly orderingTypes: any = ordenation.types;
+
   constructor(http: HttpClient,
               @Inject('BASE_URL') baseUrl: string,
               private productService: ProductService,
@@ -53,7 +54,8 @@ export class ProductListComponent implements OnDestroy, OnInit {
     this.screenWidth = window.innerWidth;
     this.deviceType = identifyDeviceType(this.screenWidth);
 
-    this.orderingValue = orderingItemsHelper[1].value;
+    this.orderingValue = this.orderingTypes[1].value;
+
     this.fetchProductsByOrderingValue(this.orderingValue, this.pageIndex.toString());
   }
 
@@ -161,5 +163,4 @@ export class ProductListComponent implements OnDestroy, OnInit {
     this.notifier.complete();
   }
 
-  protected readonly orderingItems = orderingItemsHelper;
 }

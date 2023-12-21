@@ -10,7 +10,8 @@ import {catchError, Subject, takeUntil, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {moneyMask} from "@components/product/helpers/format-currency-helper";
-import {filteringItemsHelper} from "@components/product/helpers/filtering-items-helper";
+import product from "@assets/json/product-categories.json";
+
 
 @Component({
   selector: 'app-register-product',
@@ -85,5 +86,6 @@ export class RegisterProductComponent implements OnInit, OnDestroy{
     this.notifier.complete();
   }
 
-  protected readonly productTypes = filteringItemsHelper;
+  protected readonly productTypes = product.types;
+
 }

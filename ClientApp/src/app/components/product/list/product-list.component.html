@@ -28,10 +28,10 @@
                   [(ngModel)]="orderingValue" class="form-select ml-1 filter-dropdown"
                   (ngModelChange)="fetchProductsByOrderingValue(orderingValue,pageIndex.toString())">
               <option class="text-center text-shrink "
-                      *ngFor="let orderingItem of orderingItems"
-                      [ngValue]="orderingItem.value"
+                      *ngFor="let orderingType of orderingTypes"
+                      [ngValue]="orderingType.value"
               >
-                {{orderingItem.label}}
+                {{orderingType.label}}
               </option>
           </select>
         </div>
